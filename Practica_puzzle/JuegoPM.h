@@ -3,8 +3,6 @@
 
 #include "Matriz.h"
 
-//Constantes
-const short int NUM_MODOS = 2;
 
 /*
  * Estructura
@@ -22,11 +20,12 @@ typedef struct{
   tMatrizChar imagenObjetivo;
   short int numMaxAcciones;
   short int numAccionActuales;
-  short int modo;
+  string  modo;
 }tJuegoPM;
 
+//Array de los modos de juego
+string tiposModo[]{"1D",2D"};
 
-typedef string tModo[NUM_MODOS];
  //Cabeceras de las funciones
 
  /**

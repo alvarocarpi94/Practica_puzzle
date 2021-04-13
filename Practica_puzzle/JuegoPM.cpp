@@ -17,19 +17,20 @@ void mainJuegoPM() {
 	//Estructura de nuestro juego
 	tJuegoPM juego;
 	bool finJuego = true;
-	tModo tipoModo = {"1D", "2D"};
+	//tModo tipoModo = {"1D", "2D"};
 	short int opcion;
+	cout <<
 
 	while (!finJuego)
 	{
 		switch (opcion = menu()) {
 		case 1: {
-			if (!iniciar(juego, tipoModo[opcion - 1], opcion)) {
+			if (!iniciar(juego, tiposModo[opcion - 1], opcion)) {
 				cout << "Error al iniciar el juego en modo " << tipoModo[opcion - 1] << endl;
 			}
 		} break;
 		case 2: {
-			if (!iniciar(juego, tipoModo[opcion - 1], opcion)) {
+			if (!iniciar(juego, tiposModo[opcion - 1], opcion)) {
 				cout << "Error al iniciar el juego en modo " << tipoModo[opcion - 1] << endl;
 			}
 
@@ -233,11 +234,30 @@ bool jugar(tJuegoPM & jpm){
 bool accion(tJuegoPM& jpm){
 
 	bool accion = false;
-	string comando;
-	char aux;
-	int a, b, c, d;
 
-	cout << "Introduzca un comando :";
+	if(jpm.modo == tiposModo[0]){
+		
+		accion = accion1D(jpm);
+	}else{
+		
+		accion = accion2D(jpm);
+	}
+	
+	return accion;
+}
+
+bool accion1D(tJuegoPM& jpm){
+
+	//si no encuentro el comando me salgo
+	bool accionRealizada = false;
+
+	//imprimimos la información para la elección del comando
+	infoAccion1D();
+
+	//cargo el comando (común para 1D y 2D)
+	string comando = pedirComando(comando);
+
+	int param1, param2;
 	/*
 	 * Que queremos conseguir:
 	 * SF a b -> SF 1 2
@@ -246,29 +266,73 @@ bool accion(tJuegoPM& jpm){
 	 * 1
 	 * 2
 	 */
-	//submesanio = llamada.llamadas[i].fechaLlamada.substr(3, 7); 
-	getline(cin, comando);
-
-	cin >> comando;
-	if(comando == "SF"){
-		cin >> a >> b ;
-	}else if(comando == "LX"){
-		cin >> b >> c >> d; 
-	
+	if(comando == "SF"){ //dos paramétros
+		cin >> param1 >> param2;
+		accionRealizada = swapF(jpm.imagenInicial, param1, param2);
+	}else if(comando == "SC"){
+		cin >> param1 >> param2;
+		accionRealizada = swapC(jpm.imagenInicial, param1, param2);
+	}else if (comando == "SD") {
+		cin >> param1;
+		accionRealizada = swapD(jpm.imagenInicial, param1);
+	}else if (comando == "VF") {
+		cin >> param1;
+		accionRealizada = voltearF(jpm.imagenInicial, param1);
+	}else if (comando == "VC") {
+		cin >> param1;
+		accionRealizada = voltearC(jpm.imagenInicial, param1);
+	}else if (comando == "VD") {
+		cin >> param;
+		accionRealizada = voltearD(jpm.imagenInicial, param1);
 	}
 
-	int p1 = atoi(comando);
-	if(jpm.modo == 1){
-		infoAccion1D();
-		accion1D
-	}else{
-		infoAccion2D();
-		accion2D
-	}
-	
-	return accion;
+	return accionRealizada;
 }
 
+bool accion2D(tJuegoPM& jpm) {
+
+	//si no encuentro el comando me salgo
+	bool accionRealizada = false;
+
+	infoAccion2D();
+
+	//cargo el comando (común para 1D y 2D)
+	string comando = pedirComando(comando);
+
+	int param1, param2, param3, param4;
+	/*
+	 * Que queremos conseguir:
+	 * SF a b -> SF 1 2
+	 * tenemos que trocear nuestro string
+	 * SF
+	 * 1
+	 * 2
+	 */
+	if (comando == "VV") { //No tiene parametros
+		accionRealizada = true;
+	}
+	else if (comando == "VH") { //No tiene parámetros
+		accionRealizada = true;
+	}
+	else if (comando == "RD") {//No tiene parámetros
+		accionRealizada = true;
+	}
+	else if (comando == "SA") {//Tiene 4 parámetros
+		cin >> param1 >> param2 >> param3 >> param4;
+		accionRealizada = true;
+	}
+	else if (comando == "VD") { //No tiene parámetros
+		accionRealizada = true;
+	}
+
+	return accionRealizada;
+}
+
+
+void pedirComando(string & comando){
+	cout << "Introduzca comando :";
+	cin >> comando;
+}
 
 void infoAccion1D() {
 
