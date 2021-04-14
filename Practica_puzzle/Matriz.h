@@ -14,7 +14,7 @@ using namespace std;
 
     Dimension de nuestra matriz
 */
-const int DIM_MAX = 6;
+const int DIM_MAX = 64;
 
 
 /*

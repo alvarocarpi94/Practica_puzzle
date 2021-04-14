@@ -87,8 +87,10 @@ void mostrar(const tMatrizChar& mat){
                 colorCTA(15, int(mat.matriz[fila][columna]) - int('0'));
                 cout << ' ' << ' ';
         }
+        cout << endl;
     }
 
+    colorCTA(15, 0);
     cout << "\n\n";
 
 }
@@ -117,12 +119,11 @@ bool operator == (tMatrizChar const& mat1, tMatrizChar const& mat2){
                 if(mat1.matriz[contadorFilas][contadorColumnas] == mat2.matriz[contadorFilas][contadorColumnas]){
                     contadorColumnas++;
                 }else{
-
+                    matricesIguales = false;
                 }
             }
 
             contadorFilas++;
-
         }
 
     }else{

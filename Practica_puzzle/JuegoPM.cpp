@@ -159,6 +159,7 @@ bool cargar(tJuegoPM& jpm){
 		cargar(jpm.imagenInicial, ficheroDeEntrada);
 		cargar(jpm.imagenObjetivo, ficheroDeEntrada);
 		ficheroDeEntrada >> jpm.numMaxAcciones;
+		jpm.numAccionActuales = 0;
 	}else{
 		aperturaFichero = false;
 	}
@@ -172,14 +173,15 @@ bool cargar(tJuegoPM& jpm){
  */
 void mostrar(tJuegoPM const& jpm){
 
+	borrar();
 	//Mostramos las imagenes jugador y Objetivo
 	mostrar(jpm.imagenInicial); //Mostrar del módulo Matriz.h
 	mostrar(jpm.imagenObjetivo); 
 
 	//Debe mostrar los numero de intentos restantes:
-	cout << "Intentos maximo: " << jpm.numMaxAcciones;
-	cout << "Intentos actuales: " << jpm.numAccionActuales;
-	cout << "Intentos restantes: " << jpm.numMaxAcciones - jpm.numAccionActuales;
+	cout << "Intentos maximo: " << jpm.numMaxAcciones << endl;
+	cout << "Intentos actuales: " << jpm.numAccionActuales << endl;
+	cout << "Intentos restantes: " << jpm.numMaxAcciones - jpm.numAccionActuales << endl;
 
 }
 
