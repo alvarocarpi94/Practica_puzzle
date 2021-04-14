@@ -1,13 +1,20 @@
 #ifndef MATRIZ_H
 #define MATRIZ_H
 
+#include "Coordenada.h"
+#include <iostream>     //Entrada y salida
+#include <fstream>      //Ficheros
+#include <string>       //Cadenas de caracteres
+#include <iomanip>      //Formateo de salida
+
+using namespace std;
 
 /*
     Constante
 
     Dimension de nuestra matriz
 */
-const int DIM_MAX = 64;
+const int DIM_MAX = 6;
 
 
 /*
@@ -27,15 +34,21 @@ typedef struct{
     //Tamaño máximo de nuestra matriz
     unsigned char matriz[DIM_MAX][DIM_MAX];
     //tamaño de nuestra matriz
-    unsigned int filas = 0;
-    unsigned int columnas = 0;
+    int filas;
+    int columnas;
 }tMatrizChar;
 
 /**
  * carga en la matriz los datos dados mediante el flujo de entrada.
  * Devuelve falso si se produce un error en la lectura de los datos.
  */
-bool cargar(tMatrizChar& mat, istream& ent);
+bool cargar(tMatrizChar& mat, istream & ent);
+
+/**
+ * Muestra la matriz dada por parámetro.
+ */
+void mostrar(const tMatrizChar& mat);
+
 
 /**
  * compara si las dos matrices son iguales.
@@ -85,7 +98,7 @@ bool voltearC(tMatrizChar& mat, int c);
  * dar la vuelta a la diagonal d con respecto al centro de eje perpendicular de dicha diagonal.
  * Devuelve falso si la diagonal no pertenece al rango de la matriz o si la matriz no es cuadrada.
  */
-*bool voltearD(tMatrizChar& mat, int d);  
+bool voltearD(tMatrizChar& mat, int d);  
 
 
 /**

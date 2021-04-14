@@ -2,8 +2,9 @@
 #define JuegoPM_H
 
 #include "Matriz.h"
+#include <string>
 
-
+using namespace std;
 /*
  * Estructura
  *
@@ -18,13 +19,11 @@
 typedef struct{
   tMatrizChar imagenInicial;
   tMatrizChar imagenObjetivo;
-  short int numMaxAcciones;
-  short int numAccionActuales;
-  string  modo;
+  int numMaxAcciones;
+  int numAccionActuales;
+  string modo;
 }tJuegoPM;
 
-//Array de los modos de juego
-string tiposModo[]{"1D",2D"};
 
  //Cabeceras de las funciones
 
@@ -71,5 +70,24 @@ bool jugar(tJuegoPM& jpm);
  * seg�n el comando de acci�n tecleado por el usuario, llama a la acci�n correspondiente definida en el m�dulo Matriz;
  */
 bool accion(tJuegoPM& jpm);  
+
+
+/*
+*
+*/
+bool accion2D(tJuegoPM& jpm);
+/*
+*
+*/
+bool accion1D(tJuegoPM& jpm);
+
+/*
+* Información de las acciones del modo 1D.
+*/
+void infoAccion1D();
+/*
+*Información de las acciones del modo 2D.
+*/
+void infoAccion2D();
 
 #endif

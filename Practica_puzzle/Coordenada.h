@@ -1,6 +1,8 @@
 #ifndef COORDENADA_H
 #define COORDENADA_H
 
+using namespace std;
+
 /*
     Estructura que define una coordenada
     las coordenadas no van a ser negativas

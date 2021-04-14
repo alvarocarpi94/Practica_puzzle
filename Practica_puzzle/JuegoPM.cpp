@@ -1,9 +1,12 @@
 #include <iostream>
 #include <fstream> //Uso de ficheros
-#include <string>
+#include <string>	//uso de strings
 #include "JuegoPM.h"
 #include "Matriz.h"
-using namespace std;
+#include "UtilidadesSYS.h"
+#include "Coordenada.h"
+
+
 
 /*
  * Al comenzar el juego aparece un menú para seleccionar entre las versiones del juego 
@@ -12,28 +15,50 @@ using namespace std;
  * este fichero es el número de acciones o intentos que se tienen para conseguir que la 
  * imagen inicial sea la imagen objetivo.
  */
+
+int main() {
+
+	mainJuegoPM();
+	
+	system("pause");
+	return 0;
+}
 void mainJuegoPM() {
 
+	chcp1252();
 	//Estructura de nuestro juego
 	tJuegoPM juego;
-	bool finJuego = true;
-	//tModo tipoModo = {"1D", "2D"};
+
+	bool finJuego = false;
+	
 	short int opcion;
-	cout <<
 
 	while (!finJuego)
 	{
 		switch (opcion = menu()) {
 		case 1: {
-			if (!iniciar(juego, tiposModo[opcion - 1], opcion)) {
-				cout << "Error al iniciar el juego en modo " << tipoModo[opcion - 1] << endl;
+			string modoJ = "1D";
+			if (!iniciar(juego, modoJ, opcion)) {
+				cout << "Error al iniciar el juego en modo " << "1D" << endl;
+			}
+
+			if(jugar(juego)){
+				cout << "Has ganado" << endl;
+			}else{
+				cout << "Has perdido" << endl;
 			}
 		} break;
 		case 2: {
-			if (!iniciar(juego, tiposModo[opcion - 1], opcion)) {
-				cout << "Error al iniciar el juego en modo " << tipoModo[opcion - 1] << endl;
+			string modoJ = "2D";
+			if (!iniciar(juego,modoJ, opcion)) {
+				cout << "Error al iniciar el juego en modo " << "2D" << endl;
 			}
 
+			if(jugar(juego)){
+				cout << "Has ganado" << endl;
+			}else{
+				cout << "Has perdido"<< endl;
+			}
 		} break;
 		case 0: {
 			finJuego = false;
@@ -90,7 +115,7 @@ bool iniciar(tJuegoPM & jpm, string modo, int num){
 	if(num < 1 && num > 2){
 		iniciar = false;
 	}else{
-		jpm.modo = num;
+		jpm.modo = modo;
 		iniciar = cargar(jpm);
 	}
 
@@ -121,7 +146,7 @@ bool cargar(tJuegoPM& jpm){
 	//hay que concatenar la ruta + nombre del fichero + modo
 	ruta += nombreFichero;
 
-	if(jpm.modo == 1){
+	if(jpm.modo == "1D"){
 		ruta += "_1D.txt";
 	}else{
 		ruta += "_2D.txt";
@@ -148,8 +173,8 @@ bool cargar(tJuegoPM& jpm){
 void mostrar(tJuegoPM const& jpm){
 
 	//Mostramos las imagenes jugador y Objetivo
-	mostrar(jpm.imagenInicial);
-	mostrar(jpm.imagenObjetivo);
+	mostrar(jpm.imagenInicial); //Mostrar del módulo Matriz.h
+	mostrar(jpm.imagenObjetivo); 
 
 	//Debe mostrar los numero de intentos restantes:
 	cout << "Intentos maximo: " << jpm.numMaxAcciones;
@@ -179,7 +204,6 @@ bool jugar(tJuegoPM & jpm){
 		if(accion(jpm)){
 			jpm.numAccionActuales++;	
 		}
-		
 		mostrar(jpm);	
 	 }
 
@@ -235,7 +259,7 @@ bool accion(tJuegoPM& jpm){
 
 	bool accion = false;
 
-	if(jpm.modo == tiposModo[0]){
+	if(jpm.modo == "1D"){
 		
 		accion = accion1D(jpm);
 	}else{
@@ -251,11 +275,14 @@ bool accion1D(tJuegoPM& jpm){
 	//si no encuentro el comando me salgo
 	bool accionRealizada = false;
 
+	string comando;
+
 	//imprimimos la información para la elección del comando
 	infoAccion1D();
 
 	//cargo el comando (común para 1D y 2D)
-	string comando = pedirComando(comando);
+	cout << "Introduzca comando :";
+	cin >> comando;
 
 	int param1, param2;
 	/*
@@ -282,7 +309,7 @@ bool accion1D(tJuegoPM& jpm){
 		cin >> param1;
 		accionRealizada = voltearC(jpm.imagenInicial, param1);
 	}else if (comando == "VD") {
-		cin >> param;
+		cin >> param1;
 		accionRealizada = voltearD(jpm.imagenInicial, param1);
 	}
 
@@ -297,7 +324,10 @@ bool accion2D(tJuegoPM& jpm) {
 	infoAccion2D();
 
 	//cargo el comando (común para 1D y 2D)
-	string comando = pedirComando(comando);
+	string comando = ""; 
+
+	cout << "Introduzca comando :";
+	cin >> comando;
 
 	int param1, param2, param3, param4;
 	/*
@@ -309,30 +339,34 @@ bool accion2D(tJuegoPM& jpm) {
 	 * 2
 	 */
 	if (comando == "VV") { //No tiene parametros
+		voltearV(jpm.imagenInicial);
 		accionRealizada = true;
 	}
 	else if (comando == "VH") { //No tiene parámetros
+		voltearH(jpm.imagenInicial);
 		accionRealizada = true;
 	}
 	else if (comando == "RD") {//No tiene parámetros
+		rotarD(jpm.imagenInicial);
 		accionRealizada = true;
 	}
 	else if (comando == "SA") {//Tiene 4 parámetros
 		cin >> param1 >> param2 >> param3 >> param4;
-		accionRealizada = true;
+		tCoor pos1, pos2;
+		pos1.coorX = param1;
+		pos1.coorY = param2;
+		pos2.coorX = param3;
+		pos2.coorY = param4;
+
+		accionRealizada = swapAdy(jpm.imagenInicial, pos1, pos2);
 	}
 	else if (comando == "VD") { //No tiene parámetros
-		accionRealizada = true;
+		accionRealizada = VoltearID(jpm.imagenInicial);
 	}
 
 	return accionRealizada;
 }
 
-
-void pedirComando(string & comando){
-	cout << "Introduzca comando :";
-	cin >> comando;
-}
 
 void infoAccion1D() {
 

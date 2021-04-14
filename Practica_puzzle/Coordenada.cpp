@@ -1,6 +1,6 @@
 #include "Coordenada.h"
 
-
+using namespace std;
 
 /* 
 Estructura de la que debemos comparar
@@ -46,7 +46,7 @@ bool operator != (tCoor c1, tCoor c2){
         coorX
         coorY
 */
-tCoor operator  + (tCoor c1, tCoor c2){
+tCoor operator + (tCoor c1, tCoor c2){
 
     return {c1.coorX + c2.coorX, c2.coorY + c2.coorY};
 }
