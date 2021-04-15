@@ -73,7 +73,7 @@ void mainJuegoPM() {
 		case 0: {
 			finJuego = true;
 			cout << "\nSaliendo del juego..." << endl;
-			cout << "Hasta pronto!!" << endl << endl;
+			cout << "Hasta pronto" << endl << endl;
 		} break;
 		}
 	}
@@ -394,6 +394,9 @@ bool accion2D(tJuegoPM& jpm) {
 
 void infoAccion1D() {
 
+	cout << "--------------------------------------------------" << endl;
+	cout << "Ayuda para elegir la acción 1D respecto al fichero" << endl;
+	cout << "--------------------------------------------------" << endl;
 	cout << "\nSF a b: intercambiar a y b de la matriz" << endl;
 	cout << "SC a b: intercambiar las columnas a y b de la matriz" << endl;
 	cout << "SD a: intercambiar las diagonales a y -a" << endl;
@@ -404,6 +407,9 @@ void infoAccion1D() {
 
 void infoAccion2D() {
 
+	cout << "--------------------------------------------------" << endl;
+	cout << "Ayuda para elegir la acción 2D respecto al fichero" << endl;
+	cout << "--------------------------------------------------" << endl;
 	cout << "\nVV: dar la vuelta a la imagen completa con respecto a su eje vertical central" << endl;
 	cout << "VH: dar la vuelta a la imagen completa respecto a su eje horizontal central" << endl;
 	cout << "RD: rotar una imagen 90 grados en el sentido de las agujas del reloj" << endl;

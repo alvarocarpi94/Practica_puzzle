@@ -7,9 +7,6 @@
 
 using namespace std;
 
-//hola2
-
-
 /*
     Entender nuestra estructura
 
