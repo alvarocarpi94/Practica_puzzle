@@ -399,7 +399,7 @@ void infoAccion1D() {
 	cout << "SD a: intercambiar las diagonales a y -a" << endl;
 	cout << "VF a: voltear a la fila a" << endl;
 	cout << "VC a: voltear la columna a" << endl;
-	cout << "VD a: voltear la diagonal a" << endl;
+	cout << "VD a: voltear la diagonal a\n" << endl;
 }
 
 void infoAccion2D() {
@@ -408,7 +408,7 @@ void infoAccion2D() {
 	cout << "VH: dar la vuelta a la imagen completa respecto a su eje horizontal central" << endl;
 	cout << "RD: rotar una imagen 90 grados en el sentido de las agujas del reloj" << endl;
 	cout << "SA: a b c d: intercambiar las posiciones vecinas o adyacentes de las posiciones [a,b] y [c,d]" << endl;
-	cout << "VD: Dar la vuelta a la imagen completa respecto a la diagonal principal" << endl;
+	cout << "VD: Dar la vuelta a la imagen completa respecto a la diagonal principal\n" << endl;
 
 }
 

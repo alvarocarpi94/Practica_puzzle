@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 #include "Matriz.h"
 #include "Coordenada.h"
 #include "UtilidadesSYS.h"
@@ -80,13 +82,24 @@ Escribimos espacios en blanco ' ' (uno o varios).
 void mostrar(const tMatrizChar& mat){
 
     cout << "\n\n";
+    cout << "   ";
+    for(int i = 0; i < mat.columnas; i++){
+        if(i < 10){
+            cout << i  << " ";
+        }else{
+            cout << i;
+        }
+    }
+
+    cout << endl;
 
     for(int fila = 0; fila < mat.filas; fila++){
-        
+        cout << setw(2) << right << fila << " ";
         for (int columna = 0; columna < mat.columnas; columna++) {
                 colorCTA(15, int(mat.matriz[fila][columna]) - int('0'));
                 cout << ' ' << ' ';
         }
+        colorCTA(15, 0);
         cout << endl;
     }
 
@@ -318,7 +331,39 @@ bool voltearC(tMatrizChar& mat, int c) {
 /*
  */
 bool voltearD(tMatrizChar& mat, int d) {
-    return false;
+
+    bool voltearD = false;
+
+    char auxiliar;
+
+    // comprobamos que sea cuadra y que la dional este en el rango.
+    if((mat.filas == mat.columnas) && (abs(d) >= 0 && abs(d) < mat.columnas)){
+
+        if(d >= 0){
+
+            for(int i = 0; i < (mat.filas - d)/2; i++){
+                // mat[0][1]
+                auxiliar = mat.matriz[i][d + i];
+                // mat[0][1] = [2][3]
+                mat.matriz[i][d + i] = mat.matriz[(mat.filas -1) - i - d][(mat.columnas - 1) - i];
+                mat.matriz[(mat.filas - 1) - i - d][(mat.columnas - 1) - i] = auxiliar;
+            }
+        }else{
+             for(int i = 0; i < (mat.filas - abs(d))/2; i++){
+                // mat[1][0]
+                auxiliar = mat.matriz[abs(d)][i];
+                // mat[1][0] = [3][2]
+                mat.matriz[abs(d)][i] = mat.matriz[(mat.filas - 1) - i][(mat.columnas - 1) - i - abs(d)];
+                mat.matriz[(mat.filas - 1) - i][(mat.columnas - 1) - i - abs(d)] = auxiliar;
+            }
+
+        }
+
+        voltearD = true;
+
+   }
+
+    return voltearD;
 }
 
 
@@ -327,19 +372,35 @@ bool voltearD(tMatrizChar& mat, int d) {
 /*
  */
 void voltearV(tMatrizChar& mat) {
-
+    for(int i = 0 ;  i < mat.columnas ; i++){
+        voltearF(mat, i);
+    }
 }
 
 /*
  */
 void voltearH(tMatrizChar& mat) {
-
+    for(int i = 0; i < mat.columnas ; i++){
+        voltearC(mat, i);
+    }
 }
 
 /*
  */
 void rotarD(tMatrizChar& mat){
 
+    tMatrizChar auxiliar = mat;
+    mat.filas = auxiliar.columnas;
+    mat.columnas = auxiliar.filas;
+
+
+    for(int filas = 0; filas < auxiliar.filas; filas++){
+        for(int columnas = 0; columnas < auxiliar.columnas; columnas++){ 
+
+            // [1][7]                                             //[4][1]      
+            mat.matriz[columnas][(auxiliar.filas - 1) - filas] = auxiliar.matriz[filas][columnas];
+        }
+    }
 }
 
 /*
@@ -352,7 +413,22 @@ bool swapAdy(tMatrizChar& mat, tCoor pos1, tCoor pos2) {
 /*
  */
 bool VoltearID(tMatrizChar& mat){
-    return false;
+    bool voltearID = false;
+    //matriz cuadrada
+    if(mat.columnas == mat.filas){
+        tMatrizChar auxiliar = mat;
+        for(int filas = 0; filas < mat.filas; filas++){
+            for(int columnas = 0; columnas < mat.columnas; columnas++){ 
+
+                //[0][0]  -> [0][0]
+                //[0][1]  _> [1][0]                          
+                mat.matriz[filas][columnas] = auxiliar.matriz[columnas][filas];
+            }
+        }   
+        voltearID = true;
+    }
+
+    return voltearID;
 }
 
 
