@@ -44,9 +44,14 @@ void mainJuegoPM() {
 			}
 
 			if(jugar(juego)){
-				cout << "Has ganado" << endl;
+				cout << "\n\nHas ganado\n\n" << endl;
+				pausa();
+				borrar();
 			}else{
-				cout << "Has perdido" << endl;
+			
+				cout << "\n\nHas perdido\n\n" << endl;
+				pausa();
+				borrar();
 			}
 		} break;
 		case 2: {
@@ -55,10 +60,14 @@ void mainJuegoPM() {
 				cout << "Error al iniciar el juego en modo " << "2D" << endl;
 			}
 
-			if(jugar(juego)){
-				cout << "Has ganado" << endl;
+			if(jugar(juego)){			
+				cout << "\nHas ganado\n" << endl;
+				pausa();
+				borrar();	
 			}else{
-				cout << "Has perdido"<< endl;
+				cout << "\nHas perdido\n"<< endl;
+				pausa();
+				borrar();
 			}
 		} break;
 		case 0: {
@@ -150,7 +159,7 @@ bool cargar(tJuegoPM& jpm){
 	string nombreFichero;
 
 	//el usuario solo se preocupa por el nombre
-	cout << "Nombre del fichero " << endl;
+	cout << "\nNombre del fichero :";
 	cin >> nombreFichero;
 
 	//hay que concatenar la ruta + nombre del fichero + modo
@@ -191,7 +200,7 @@ void mostrar(tJuegoPM const& jpm){
 	//Debe mostrar los numero de intentos restantes:
 	cout << "Intentos maximo: " << jpm.numMaxAcciones << endl;
 	cout << "Intentos actuales: " << jpm.numAccionActuales << endl;
-	cout << "Intentos restantes: " << jpm.numMaxAcciones - jpm.numAccionActuales << endl;
+	cout << "Intentos restantes: " << jpm.numMaxAcciones - jpm.numAccionActuales << endl << endl;
 
 }
 
@@ -215,6 +224,8 @@ bool jugar(tJuegoPM & jpm){
 		
 		if(accion(jpm)){
 			jpm.numAccionActuales++;	
+		}else{
+			cout << "Comando erroneo\n";
 		}
 		mostrar(jpm);	
 	 }
@@ -382,7 +393,7 @@ bool accion2D(tJuegoPM& jpm) {
 
 void infoAccion1D() {
 
-	cout << "SF a b: intercambiar a y b de la matriz" << endl;
+	cout << "\nSF a b: intercambiar a y b de la matriz" << endl;
 	cout << "SC a b: intercambiar las columnas a y b de la matriz" << endl;
 	cout << "SD a: intercambiar las diagonales a y -a" << endl;
 	cout << "VF a: voltear a la fila a" << endl;
@@ -392,7 +403,7 @@ void infoAccion1D() {
 
 void infoAccion2D() {
 
-	cout << "VV: dar la vuelta a la imagen completa con respecto a su eje vertical central" << endl;
+	cout << "\nVV: dar la vuelta a la imagen completa con respecto a su eje vertical central" << endl;
 	cout << "VH: dar la vuelta a la imagen completa respecto a su eje horizontal central" << endl;
 	cout << "RD: rotar una imagen 90 grados en el sentido de las agujas del reloj" << endl;
 	cout << "SA: a b c d: intercambiar las posiciones vecinas o adyacentes de las posiciones [a,b] y [c,d]" << endl;

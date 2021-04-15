@@ -169,7 +169,7 @@ bool swapF(tMatrizChar& mat, int f1, int f2){
 
     //Comprobar las dimensiones de la matriz con las filas a intercambiar
    
-    if ((f1 >= 0 && f1 <= mat.filas) && (f2 >= 0 && f2 <= mat.filas)) {
+    if ((f1 >= 0 && f1 < mat.filas) && (f2 >= 0 && f2 < mat.filas)) {
 
         for (int i = 0; i < mat.columnas; i++) {
             auxiliar = mat.matriz[f1][i];
@@ -194,7 +194,7 @@ bool swapC(tMatrizChar& mat, int c1, int c2) {
 
     //Comprobar las dimensiones de la matriz con las columnas a intercambiar
 
-    if ((c1 >= 0 && c1 <= mat.columnas) && (c2 >= 0 && c2 <= mat.columnas)) {
+    if ((c1 >= 0 && c1 < mat.columnas) && (c2 >= 0 && c2 < mat.columnas)) {
 
         for (int i = 0; i < mat.filas; i++) {
             auxiliar = mat.matriz[i][c1];
