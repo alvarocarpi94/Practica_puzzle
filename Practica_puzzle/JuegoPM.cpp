@@ -226,6 +226,7 @@ bool jugar(tJuegoPM & jpm){
 			jpm.numAccionActuales++;	
 		}else{
 			cout << "Comando erroneo\n";
+			pausa();
 		}
 		mostrar(jpm);	
 	 }

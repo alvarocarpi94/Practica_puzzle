@@ -210,22 +210,109 @@ bool swapC(tMatrizChar& mat, int c1, int c2) {
 }
 
 /*
+  Def: una matriz es cuadrada cuando tiene mismo numero de filas que de columnas
+
  */
 bool swapD(tMatrizChar& mat, int d) {
-    return false;
+    bool swapD = false;
+    char auxiliar;
+    int auxDiagonal = d;
+    int contador = 0;
+
+    if((mat.filas == mat.columnas) && (d >= 0 && d < mat.columnas)){
+
+        
+        for(int filas = 0; filas < mat.filas; filas++){
+
+            for(int columnas = 0; columnas < mat.columnas; columnas++){
+
+                if((filas == auxDiagonal) && (contador < (mat.columnas - d))){
+                    auxiliar = mat.matriz[filas][contador];
+                    mat.matriz[filas][contador] = mat.matriz[contador][filas];
+                    mat.matriz[contador][filas] = auxiliar;
+                    auxDiagonal++;
+                    contador++;
+                }
+
+            }
+        }
+
+        swapD = true;
+
+    }
+
+    return swapD;
 }
 
 /*
+     * dar la vuelta a la fila f con respecto al eje vertical central de la imagen.
+ * Devuelve falso si la fila no pertenece al rango de la matriz.
  */
 bool voltearF(tMatrizChar& mat, int f) {
-    return false;
+    
+    bool voltearF = false;
+    char auxiliar;
+
+    if((f >= 0) && (f < mat.filas)){
+
+        /*
+        * 
+        * for(int filas = 0; filas < mat.filas; filas++){
+
+            for(int columnas = 0; columnas < mat.columnas; columnas++){
+                
+                if((filas == f) && (contador < (mat.columnas/2))){
+                    auxiliar = mat.matriz[filas][contador];
+                    mat.matriz[filas][contador] = mat.matriz[filas][auxColumnas];
+                    mat.matriz[filas][auxColumnas] = auxiliar;
+                    auxColumnas--;
+                    contador++;
+                }
+            }
+        }
+        
+        */
+
+        for(int i = 0; i < mat.columnas/2; i++){
+                auxiliar = mat.matriz[f][i];
+                mat.matriz[f][i] = mat.matriz[f][(mat.columnas -1) - i];
+                mat.matriz[f][(mat.columnas -1) - i] = auxiliar;
+        }
+
+        voltearF = true;
+
+    }
+    
+    return voltearF;
 }
 
 
 /*
  */
 bool voltearC(tMatrizChar& mat, int c) {
-    return false;
+    
+    
+    bool voltearC = false;
+    char auxiliar;
+
+    if((c >= 0) && (c < mat.columnas)){
+
+        for(int i = 0; i < mat.filas/2; i++){
+                /*
+                    01 = x
+
+                */
+                auxiliar = mat.matriz[i][c];
+                mat.matriz[i][c] = mat.matriz[(mat.filas -1) - i][c];
+                mat.matriz[(mat.filas - 1) - i][c] = auxiliar;
+        }
+
+        voltearC = true;
+
+    }
+   
+    
+    return voltearC;
 }
 
 /*
