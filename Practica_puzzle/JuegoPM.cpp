@@ -81,8 +81,8 @@ int menu(){
 	mostrarMenu();
 	cin >> opcion;
 
-	while (opcion < 0 && opcion > 2) {
-		cout << "Error...";
+	while (opcion < 0 || opcion > 2) {
+		cout << "Error, opción no válida..." << endl << endl;
 		mostrarMenu();
 		cin >> opcion;
 	}
