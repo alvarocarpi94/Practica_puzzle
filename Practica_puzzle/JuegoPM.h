@@ -27,6 +27,11 @@ typedef struct{
 
  //Cabeceras de las funciones
 
+/*
+* Cartel presentación del juego.
+*/
+void presentacionJuego();
+
  /**
   * función principal del juego.
   */

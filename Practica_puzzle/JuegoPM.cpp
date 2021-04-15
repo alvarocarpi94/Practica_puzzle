@@ -26,12 +26,13 @@ int main() {
 void mainJuegoPM() {
 
 	chcp1252();
+	borrar(); //Borramos para que no nos salga el mensaje de chcp1252();
 	//Estructura de nuestro juego
 	tJuegoPM juego;
-
 	bool finJuego = false;
-	
 	short int opcion;
+
+	presentacionJuego();
 
 	while (!finJuego)
 	{
@@ -61,7 +62,9 @@ void mainJuegoPM() {
 			}
 		} break;
 		case 0: {
-			finJuego = false;
+			finJuego = true;
+			cout << "\nSaliendo del juego..." << endl;
+			cout << "Hasta pronto!!" << endl << endl;
 		} break;
 		}
 	}
@@ -87,6 +90,13 @@ int menu(){
 	return opcion;
 }
 
+void presentacionJuego() {
+
+	cout << "-------------------" << endl;
+	cout << "Puzzle con matrices" << endl;
+	cout << "-------------------" << endl;
+}
+
 /*
  * /_//
  *  
@@ -96,7 +106,7 @@ void mostrarMenu() {
 	cout << "1- Modo 1D" << endl;
 	cout << "2- Modo 2D" << endl;
 	cout << "0- Salir" << endl;
-	cout << "Elija una opcion: ";
+	cout << "Elija una opcion (0-2): ";
 }
 
 /*
