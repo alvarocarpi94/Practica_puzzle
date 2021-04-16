@@ -15,9 +15,9 @@ using namespace std;
 
 typedef struct 
 {
-    unsigned int coorX;
-    unsigned int coorY;
-    
+    int coorX;
+    int coorY; 
+
 }tCoor;
 
 /**

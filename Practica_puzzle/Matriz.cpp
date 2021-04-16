@@ -147,7 +147,24 @@ bool operator == (tMatrizChar const& mat1, tMatrizChar const& mat2){
 
 /*
  */
-bool swap(tMatrizChar& mat, tCoor pos1, tCoor pos2);
+bool swap(tMatrizChar& mat, tCoor pos1, tCoor pos2){
+   
+    bool swap = false;
+    char auxiliar;
+    //limites del rango de la matriz es decir que las coordenadas sean válidas.
+    if((pos1.coorX >= 0 && pos1.coorX < mat.filas) && (pos1.coorY >= 0 && pos1.coorY < mat.columnas) && 
+        (pos2.coorX >= 0 && pos2.coorX < mat.filas) && (pos2.coorY >= 0 && pos2.coorY < mat.columnas)){
+            
+        auxiliar = mat.matriz[pos1.coorX][pos1.coorY];
+        mat.matriz[pos1.coorX][pos1.coorY] = mat.matriz[pos2.coorX][pos2.coorY];
+        mat.matriz[pos2.coorX][pos2.coorY] = auxiliar;
+
+        swap = true;
+        
+    }
+
+    return swap;
+}
 
 
 /*
@@ -175,16 +192,13 @@ bool swapF(tMatrizChar& mat, int f1, int f2){
 
     //variables
     bool swapf = false;
-    char auxiliar;
 
     //Comprobar las dimensiones de la matriz con las filas a intercambiar
    
     if ((f1 >= 0 && f1 < mat.filas) && (f2 >= 0 && f2 < mat.filas)) {
 
         for (int i = 0; i < mat.columnas; i++) {
-            auxiliar = mat.matriz[f1][i];
-            mat.matriz[f1][i] = mat.matriz[f2][i];
-            mat.matriz[f2][i] = auxiliar;
+            swap(mat,{f1,i},{f2,i});
         }
 
         swapf = true;
@@ -200,16 +214,13 @@ bool swapC(tMatrizChar& mat, int c1, int c2) {
 
     //variables
     bool swapc = false;
-    char auxiliar;
 
     //Comprobar las dimensiones de la matriz con las columnas a intercambiar
 
     if ((c1 >= 0 && c1 < mat.columnas) && (c2 >= 0 && c2 < mat.columnas)) {
 
         for (int i = 0; i < mat.filas; i++) {
-            auxiliar = mat.matriz[i][c1];
-            mat.matriz[i][c1] = mat.matriz[i][c2];
-            mat.matriz[i][c2] = auxiliar;
+            swap(mat, {i,c1}, {i,c2});
         }
 
         swapc = true;
@@ -225,7 +236,6 @@ bool swapC(tMatrizChar& mat, int c1, int c2) {
  */
 bool swapD(tMatrizChar& mat, int d) {
     bool swapD = false;
-    char auxiliar;
     int auxDiagonal = d;
     int contador = 0;
 
@@ -237,9 +247,7 @@ bool swapD(tMatrizChar& mat, int d) {
             for(int columnas = 0; columnas < mat.columnas; columnas++){
 
                 if((filas == auxDiagonal) && (contador < (mat.columnas - d))){
-                    auxiliar = mat.matriz[filas][contador];
-                    mat.matriz[filas][contador] = mat.matriz[contador][filas];
-                    mat.matriz[contador][filas] = auxiliar;
+                    swap(mat, {filas,contador}, {contador,filas});
                     auxDiagonal++;
                     contador++;
                 }
@@ -261,32 +269,11 @@ bool swapD(tMatrizChar& mat, int d) {
 bool voltearF(tMatrizChar& mat, int f) {
     
     bool voltearF = false;
-    char auxiliar;
 
     if((f >= 0) && (f < mat.filas)){
 
-        /*
-        * 
-        * for(int filas = 0; filas < mat.filas; filas++){
-
-            for(int columnas = 0; columnas < mat.columnas; columnas++){
-                
-                if((filas == f) && (contador < (mat.columnas/2))){
-                    auxiliar = mat.matriz[filas][contador];
-                    mat.matriz[filas][contador] = mat.matriz[filas][auxColumnas];
-                    mat.matriz[filas][auxColumnas] = auxiliar;
-                    auxColumnas--;
-                    contador++;
-                }
-            }
-        }
-        
-        */
-
         for(int i = 0; i < mat.columnas/2; i++){
-                auxiliar = mat.matriz[f][i];
-                mat.matriz[f][i] = mat.matriz[f][(mat.columnas -1) - i];
-                mat.matriz[f][(mat.columnas -1) - i] = auxiliar;
+                swap(mat, {f,i}, {f, (mat.columnas -1) - i});
         }
 
         voltearF = true;
@@ -303,18 +290,11 @@ bool voltearC(tMatrizChar& mat, int c) {
     
     
     bool voltearC = false;
-    char auxiliar;
 
     if((c >= 0) && (c < mat.columnas)){
 
         for(int i = 0; i < mat.filas/2; i++){
-                /*
-                    01 = x
-
-                */
-                auxiliar = mat.matriz[i][c];
-                mat.matriz[i][c] = mat.matriz[(mat.filas -1) - i][c];
-                mat.matriz[(mat.filas - 1) - i][c] = auxiliar;
+                swap(mat,{i,c},{(mat.filas -1) - i ,c});
         }
 
         voltearC = true;
@@ -331,27 +311,17 @@ bool voltearD(tMatrizChar& mat, int d) {
 
     bool voltearD = false;
 
-    char auxiliar;
-
     // comprobamos que sea cuadra y que la dional este en el rango.
     if((mat.filas == mat.columnas) && (abs(d) >= 0 && abs(d) < mat.columnas)){
 
         if(d >= 0){
 
             for(int i = 0; i < (mat.filas - d)/2; i++){
-                // mat[0][1]
-                auxiliar = mat.matriz[i][d + i];
-                // mat[0][1] = [2][3]
-                mat.matriz[i][d + i] = mat.matriz[(mat.filas -1) - i - d][(mat.columnas - 1) - i];
-                mat.matriz[(mat.filas - 1) - i - d][(mat.columnas - 1) - i] = auxiliar;
+                swap(mat, {i,d + i}, {(mat.filas -1) - i - d,(mat.columnas - 1) - i});
             }
         }else{
              for(int i = 0; i < (mat.filas - abs(d))/2; i++){
-                // mat[1][0]
-                auxiliar = mat.matriz[abs(d)][i];
-                // mat[1][0] = [3][2]
-                mat.matriz[abs(d)][i] = mat.matriz[(mat.filas - 1) - i][(mat.columnas - 1) - i - abs(d)];
-                mat.matriz[(mat.filas - 1) - i][(mat.columnas - 1) - i - abs(d)] = auxiliar;
+                swap(mat, { abs(d),i }, { (mat.filas - 1) - i, (mat.columnas - 1) - i - abs(d) });    
             }
 
         }
@@ -401,9 +371,57 @@ void rotarD(tMatrizChar& mat){
 }
 
 /*
+    Se define un array local con los contenidos 
+    {-1,-1},{-1,0}, ...{1,1};
+    Entonces tu bucle puede simplemente recorres las ocho posiciones del array sumando 
+    esos valores a las coordenadas horizontal y vertical.
+
+    Así en un único bucle de 8 vueltas podrás recorrer todos los vectores
+
+    otra posibilidad es simplemente hacerte un bucle anidado que recorra en el bucle externo
+    los valores -1 0 y 1 para los desplazamientos horizontales y en el bucle interno los mismo para
+    los verticales.
+
+    El bucle externo daría 3 vueltas y por cada vuelta del bucle externo el bucle interno
+    daría 3 vueltas.
+
+    cuando hablamos de un array, te digo que podría estar dentro de la función Ej:
+    const tCoord vecinas[] = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
+
+    Dice las dos soluciones son igual de eficientes.
+
+    Para cada posicion de esas 8 puedes invocar a tu propia función de swap para matrices.
+
+    Como hemos dicho antes, dicha función se ocupará ella solita de comprobar si las posiciones 
+    a intercambiar están dentro de rango o no.
+
+    Cuando la invoques estando las coordenas fuera de rango, simplemente no intercambiará nada.
+
+    Por tanto, si invocas a swap, será la propia la qeu se  encargará del problema de que las coordenadas
+    podrían salirse del tablero.
+
+    Simplemente no haciendo nada en esos casos ( es decir que devuelvas false desde la funcion swap)
  */
 bool swapAdy(tMatrizChar& mat, tCoor pos1, tCoor pos2) {
-    return false;
+
+    bool swapAdy = false;
+    const tCoor vecinas[] = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
+
+    //Comprobamos el rango de las coordenadas que nos dan.
+      if((pos1.coorX >= 0 && pos1.coorX < mat.filas) && (pos1.coorY >= 0 && pos1.coorY < mat.columnas) && 
+        (pos2.coorX >= 0 && pos2.coorX < mat.filas) && (pos2.coorY >= 0 && pos2.coorY < mat.columnas)){
+
+         
+        for(int i = 0; i < 8; i++){
+            swap(mat, {pos1.coorX + (vecinas[i].coorX),pos1.coorY + (vecinas[i].coorY) }, 
+                {pos2.coorX + (vecinas[i].coorX),pos2.coorY + (vecinas[i].coorY) });
+        }
+        
+        swapAdy = true;
+    }
+
+
+   return swapAdy;
 }
 
 
