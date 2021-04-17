@@ -1,8 +1,17 @@
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
+
 #ifndef JuegoPM_H
 #define JuegoPM_H
 
 #include "Matriz.h"
 #include <string>
+//#include <iostream>
+//#include <fstream> //Uso de ficheros
+
 
 using namespace std;
 /*
@@ -26,6 +35,11 @@ typedef struct{
 
 
  //Cabeceras de las funciones
+
+/*
+* función donde empieza a jugar.
+*/
+void empezarJugar(tJuegoPM& juego);
 
 /*
 * Cartel presentación del juego.

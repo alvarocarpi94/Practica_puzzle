@@ -1,3 +1,10 @@
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
+
+
 #include <iostream>
 #include <cmath>
 #include <iomanip>
@@ -152,8 +159,7 @@ bool swap(tMatrizChar& mat, tCoor pos1, tCoor pos2){
     bool swap = false;
     char auxiliar;
     //limites del rango de la matriz es decir que las coordenadas sean válidas.
-    if((pos1.coorX >= 0 && pos1.coorX < mat.filas) && (pos1.coorY >= 0 && pos1.coorY < mat.columnas) && 
-        (pos2.coorX >= 0 && pos2.coorX < mat.filas) && (pos2.coorY >= 0 && pos2.coorY < mat.columnas)){
+    if((coordenadasValidas(mat,pos1)) && (coordenadasValidas(mat,pos2))){
             
         auxiliar = mat.matriz[pos1.coorX][pos1.coorY];
         mat.matriz[pos1.coorX][pos1.coorY] = mat.matriz[pos2.coorX][pos2.coorY];
@@ -408,9 +414,7 @@ bool swapAdy(tMatrizChar& mat, tCoor pos1, tCoor pos2) {
     const tCoor vecinas[] = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
 
     //Comprobamos el rango de las coordenadas que nos dan.
-      if((pos1.coorX >= 0 && pos1.coorX < mat.filas) && (pos1.coorY >= 0 && pos1.coorY < mat.columnas) && 
-        (pos2.coorX >= 0 && pos2.coorX < mat.filas) && (pos2.coorY >= 0 && pos2.coorY < mat.columnas)){
-
+      if((coordenadasValidas(mat,pos1)) && (coordenadasValidas(mat,pos2))){
          
         for(int i = 0; i < 8; i++){
             swap(mat, {pos1.coorX + (vecinas[i].coorX),pos1.coorY + (vecinas[i].coorY) }, 
@@ -446,4 +450,6 @@ bool VoltearID(tMatrizChar& mat){
     return voltearID;
 }
 
-
+bool coordenadasValidas(tMatrizChar& mat, tCoor coord){
+    return (coord.coorX >= 0 && coord.coorX < mat.filas) && (coord.coorY >= 0 && coord.coorY < mat.columnas);
+}

@@ -1,3 +1,10 @@
+
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
+
 #include <iostream>
 #include <fstream> //Uso de ficheros
 #include <string>	//uso de strings
@@ -5,7 +12,6 @@
 #include "Matriz.h"
 #include "UtilidadesSYS.h"
 #include "Coordenada.h"
-
 
 
 /*
@@ -43,16 +49,8 @@ void mainJuegoPM() {
 				cout << "Error al iniciar el juego en modo " << "1D" << endl;
 			}
 
-			if(jugar(juego)){
-				cout << "\n\nHas ganado\n\n" << endl;
-				pausa();
-				borrar();
-			}else{
-			
-				cout << "\n\nHas perdido\n\n" << endl;
-				pausa();
-				borrar();
-			}
+			empezarJugar(juego);
+	
 		} break;
 		case 2: {
 			string modoJ = "2D";
@@ -60,15 +58,8 @@ void mainJuegoPM() {
 				cout << "Error al iniciar el juego en modo " << "2D" << endl;
 			}
 
-			if(jugar(juego)){			
-				cout << "\nHas ganado\n" << endl;
-				pausa();
-				borrar();	
-			}else{
-				cout << "\nHas perdido\n"<< endl;
-				pausa();
-				borrar();
-			}
+			empezarJugar(juego);
+	
 		} break;
 		case 0: {
 			finJuego = true;
@@ -76,9 +67,23 @@ void mainJuegoPM() {
 			cout << "Hasta pronto" << endl << endl;
 		} break;
 		}
+
 	}
 }
 
+void empezarJugar(tJuegoPM& juego) {
+
+	if (jugar(juego)) {
+		cout << "\nHas ganado\n" << endl;	
+	}
+	else {
+		cout << "\nHas perdido\n" << endl;
+	
+	}
+	pausa();
+	borrar();
+
+}
 
 /*
  * /_//

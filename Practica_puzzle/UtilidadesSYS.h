@@ -1,3 +1,9 @@
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
+
 //#pragma once
 #ifndef UTILIDADESYS_H
 #define UTILIDADESYS_H

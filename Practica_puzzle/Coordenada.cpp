@@ -1,5 +1,10 @@
-#include "Coordenada.h"
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
 
+#include "Coordenada.h"
 using namespace std;
 
 /* 
@@ -7,8 +12,8 @@ Estructura de la que debemos comparar
 
 typedef struct 
 {
-    unsigned short int coorX;
-    unsigned short int coorY;
+     unsigned short int coorX;
+    unsigned shortint coorY;
 }tCoor;
 */
 

@@ -1,3 +1,9 @@
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
+
 #ifndef COORDENADA_H
 #define COORDENADA_H
 

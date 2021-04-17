@@ -1,3 +1,9 @@
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
+
 #include "UtilidadesSYS.h"
 #include <iostream>
 #include <Windows.h>

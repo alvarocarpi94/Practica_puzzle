@@ -1,11 +1,14 @@
+/*
+*	NOMBRES:
+*		Alvaro Carpizo Garcia
+*		Jhimmy Ender Candela
+*/
+
 #ifndef MATRIZ_H
 #define MATRIZ_H
 
-#include "Coordenada.h"
-#include <iostream>     //Entrada y salida
-#include <fstream>      //Ficheros
 #include <string>       //Cadenas de caracteres
-#include <iomanip>      //Formateo de salida
+#include "Coordenada.h"
 
 using namespace std;
 
@@ -126,5 +129,9 @@ bool swapAdy(tMatrizChar & mat, tCoor pos1, tCoor pos2);
  */
 bool VoltearID(tMatrizChar& mat);
 
+/**
+ * Comprobamos si las coordenadas son validas.
+ */
+bool coordenadasValidas(tMatrizChar& mat, tCoor coord);
 
 #endif
