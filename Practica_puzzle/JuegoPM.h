@@ -37,19 +37,25 @@ typedef struct{
  //Cabeceras de las funciones
 
 /*
-* función donde empieza a jugar.
+ * -Se mantiene la constante numOpc.
+ * -Se modifica la función menu para que muestre el nuevo menú.
+ * -Se implementa una nueva función mainPuzzlesReunidos() que carga los 
+ * datos de entrada, muestra el menú y gestiona las opciones seleccionadas por 
+ * el usuario. Cuando el usuario pide salir del programa guarda en el fichero el 
+ * catálogo de puzzles y libera la memoria dinámica que se haya utilizado.
+ * -El resto de tipos y funciones que había en este módulo en la práctica 1 se 
+ * eliminan de él. 
 */
-void empezarJugar(tJuegoPM& juego);
 
-/*
-* Cartel presentación del juego.
-*/
-void presentacionJuego();
 
- /**
-  * función principal del juego.
-  */
-void mainJuegoPM();
+/**
+ * que carga los 
+ * datos de entrada, muestra el menú y gestiona las opciones seleccionadas por 
+ * el usuario. Cuando el usuario pide salir del programa guarda en el fichero el 
+ * catálogo de puzzles y libera la memoria dinámica que se haya utilizado.
+ */
+void mainPuzzlesReunidos();
+
 
 /**
  *  Menu 
@@ -59,54 +65,7 @@ int menu();
 /**
  * 
  * Muestra las opciones del menú
- * seleccionar el tipo de juego(1 o 2) o salir(0)
  */
 void mostrarMenu();
-
-/**
- *  inicia los par�metros del juego que correspondan y llama a la funci�n cargar definida a continuaci�n.
- */							
-bool iniciar(tJuegoPM & jpm, string modo, int num);
-
-/**
- * abre el fichero que corresponda y llama a la funci�n cargar del m�dulo Matriz.
- */
-bool cargar(tJuegoPM& jpm); 
-
-/**
- *  muestra el estado del reto utilizando las facilidades del m�dulo utilidadesSYS.
- * Debe mostrar primero la imagen que se est� modificando y a continuaci�n la imagen objetivo.
- * Debe mostrar tambi�n el n�mero de intentos que quedan.
- */
-void mostrar(tJuegoPM const& jpm);
-
-/**
- *  permite realizar las acciones necesarias para jugar y controla si se ha llegado al l�mite de acciones permitidas;
- */
-bool jugar(tJuegoPM& jpm);
-
-/**
- * seg�n el comando de acci�n tecleado por el usuario, llama a la acci�n correspondiente definida en el m�dulo Matriz;
- */
-bool accion(tJuegoPM& jpm);  
-
-
-/*
-*
-*/
-bool accion2D(tJuegoPM& jpm);
-/*
-*
-*/
-bool accion1D(tJuegoPM& jpm);
-
-/*
-* Información de las acciones del modo 1D.
-*/
-void infoAccion1D();
-/*
-*Información de las acciones del modo 2D.
-*/
-void infoAccion2D();
 
 #endif
