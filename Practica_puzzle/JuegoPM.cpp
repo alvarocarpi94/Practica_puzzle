@@ -15,10 +15,10 @@
 
 
 /*
- * Al comenzar el juego aparece un menú para seleccionar entre las versiones del juego 
- * modo 1D, modo 2D y la opción de salir. A continuación, se pide el nombre de 
- * fichero que contiene las imágenes inicial y objetivo. Además, el último elemento de 
- * este fichero es el número de acciones o intentos que se tienen para conseguir que la 
+ * Al comenzar el juego aparece un menï¿½ para seleccionar entre las versiones del juego 
+ * modo 1D, modo 2D y la opciï¿½n de salir. A continuaciï¿½n, se pide el nombre de 
+ * fichero que contiene las imï¿½genes inicial y objetivo. Ademï¿½s, el ï¿½ltimo elemento de 
+ * este fichero es el nï¿½mero de acciones o intentos que se tienen para conseguir que la 
  * imagen inicial sea la imagen objetivo.
  */
 
@@ -96,7 +96,7 @@ int menu(){
 	cin >> opcion;
 
 	while (opcion < 0 || opcion > 2) {
-		cout << "Error, opción no válida..." << endl << endl;
+		cout << "Error, opciï¿½n no vï¿½lida..." << endl << endl;
 		mostrarMenu();
 		cin >> opcion;
 	}
@@ -117,10 +117,11 @@ void presentacionJuego() {
  */
 void mostrarMenu() {
 
-	cout << "1- Modo 1D" << endl;
-	cout << "2- Modo 2D" << endl;
-	cout << "0- Salir" << endl;
-	cout << "Elija una opcion (0-2): ";
+	cout << "1. Resolver un puzzle 1D" << endl;
+	cout << "2. Resolver un puzzle 2D" << endl;
+	cout << "3. AÃ±adir un puzzle al catÃ¡lgo" << endl;
+	cout << "0. Salir" << endl;
+	cout << "Elige una opcion: ";
 }
 
 /*
@@ -193,13 +194,13 @@ bool cargar(tJuegoPM& jpm){
 
 /*
  *  Partiendo que cada modulo realiza su implementacion
- *	 mostrar -> Matriz.cpp debería mostrarla.
+ *	 mostrar -> Matriz.cpp deberï¿½a mostrarla.
  */
 void mostrar(tJuegoPM const& jpm){
 
 	borrar();
 	//Mostramos las imagenes jugador y Objetivo
-	mostrar(jpm.imagenInicial); //Mostrar del módulo Matriz.h
+	mostrar(jpm.imagenInicial); //Mostrar del mï¿½dulo Matriz.h
 	mostrar(jpm.imagenObjetivo); 
 
 	//Debe mostrar los numero de intentos restantes:
@@ -210,7 +211,7 @@ void mostrar(tJuegoPM const& jpm){
 }
 
 /*
- *	Controlará quien gana y que no supere los intentos maximos
+ *	Controlarï¿½ quien gana y que no supere los intentos maximos
  */
 bool jugar(tJuegoPM & jpm){
 		
@@ -259,9 +260,9 @@ bool jugar(tJuegoPM & jpm){
 	SF a b: intercambiar las filas a y b de la matriz.
 	SC a b: intercambiar las columnas a y b de la matriz.
 	SD a: intercambiar las diagonales a y -a. Las diagonales positivas se numeran en los
-		índices de las columnas, mientras que las diagonales negativas se numeran en los
-		índices de las filas. La diagonal cero es la diagonal principal. Por ejemplo, la diagonal
-		1 está formada por los elementos [0,1], [1,2], [2,3], etc. mientras que la diagonal -1 está
+		ï¿½ndices de las columnas, mientras que las diagonales negativas se numeran en los
+		ï¿½ndices de las filas. La diagonal cero es la diagonal principal. Por ejemplo, la diagonal
+		1 estï¿½ formada por los elementos [0,1], [1,2], [2,3], etc. mientras que la diagonal -1 estï¿½
 		formada por los elementos [1,0], [2,1], [3,2], etc.
 	VF a: voltear la fila a. Dar la vuelta a la fila a con respecto al eje vertical central de la
 		imagen.
@@ -280,7 +281,7 @@ bool jugar(tJuegoPM & jpm){
 
 	Planteamiento:
 
-	dependiendo de lo que tengamos en jpm.modo se permitirá hacer
+	dependiendo de lo que tengamos en jpm.modo se permitirï¿½ hacer
 	las opciones que quiera el usuario.
 
  */
@@ -306,10 +307,10 @@ bool accion1D(tJuegoPM& jpm){
 
 	string comando;
 
-	//imprimimos la información para la elección del comando
+	//imprimimos la informaciï¿½n para la elecciï¿½n del comando
 	infoAccion1D();
 
-	//cargo el comando (común para 1D y 2D)
+	//cargo el comando (comï¿½n para 1D y 2D)
 	cout << "Introduzca comando :";
 	cin >> comando;
 
@@ -322,7 +323,7 @@ bool accion1D(tJuegoPM& jpm){
 	 * 1
 	 * 2
 	 */
-	if(comando == "SF"){ //dos paramétros
+	if(comando == "SF"){ //dos paramï¿½tros
 		cin >> param1 >> param2;
 		accionRealizada = swapF(jpm.imagenInicial, param1, param2);
 	}else if(comando == "SC"){
@@ -352,7 +353,7 @@ bool accion2D(tJuegoPM& jpm) {
 
 	infoAccion2D();
 
-	//cargo el comando (común para 1D y 2D)
+	//cargo el comando (comï¿½n para 1D y 2D)
 	string comando = ""; 
 
 	cout << "Introduzca comando :";
@@ -371,15 +372,15 @@ bool accion2D(tJuegoPM& jpm) {
 		voltearV(jpm.imagenInicial);
 		accionRealizada = true;
 	}
-	else if (comando == "VH") { //No tiene parámetros
+	else if (comando == "VH") { //No tiene parï¿½metros
 		voltearH(jpm.imagenInicial);
 		accionRealizada = true;
 	}
-	else if (comando == "RD") {//No tiene parámetros
+	else if (comando == "RD") {//No tiene parï¿½metros
 		rotarD(jpm.imagenInicial);
 		accionRealizada = true;
 	}
-	else if (comando == "SA") {//Tiene 4 parámetros
+	else if (comando == "SA") {//Tiene 4 parï¿½metros
 		cin >> param1 >> param2 >> param3 >> param4;
 		tCoor pos1, pos2;
 		pos1.coorX = param1;
@@ -389,7 +390,7 @@ bool accion2D(tJuegoPM& jpm) {
 
 		accionRealizada = swapAdy(jpm.imagenInicial, pos1, pos2);
 	}
-	else if (comando == "VD") { //No tiene parámetros
+	else if (comando == "VD") { //No tiene parï¿½metros
 		accionRealizada = VoltearID(jpm.imagenInicial);
 	}
 
@@ -400,7 +401,7 @@ bool accion2D(tJuegoPM& jpm) {
 void infoAccion1D() {
 
 	cout << "--------------------------------------------------" << endl;
-	cout << "Ayuda para elegir la acción 1D respecto al fichero" << endl;
+	cout << "Ayuda para elegir la acciï¿½n 1D respecto al fichero" << endl;
 	cout << "--------------------------------------------------" << endl;
 	cout << "\nSF a b: intercambiar a y b de la matriz" << endl;
 	cout << "SC a b: intercambiar las columnas a y b de la matriz" << endl;
@@ -413,7 +414,7 @@ void infoAccion1D() {
 void infoAccion2D() {
 
 	cout << "--------------------------------------------------" << endl;
-	cout << "Ayuda para elegir la acción 2D respecto al fichero" << endl;
+	cout << "Ayuda para elegir la acciï¿½n 2D respecto al fichero" << endl;
 	cout << "--------------------------------------------------" << endl;
 	cout << "\nVV: dar la vuelta a la imagen completa con respecto a su eje vertical central" << endl;
 	cout << "VH: dar la vuelta a la imagen completa respecto a su eje horizontal central" << endl;
