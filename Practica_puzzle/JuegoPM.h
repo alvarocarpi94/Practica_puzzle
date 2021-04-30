@@ -47,8 +47,6 @@ typedef struct{
  * eliminan de él. 
 */
 
-
-
 /*
     MODIFICACIONES DE LA VERSION II
 */
@@ -79,4 +77,6 @@ void mostrarMenu();
  */
 void presentacionJuego();
 
+=======
+>>>>>>> 46f9e0bc91547a2ca44dfcd9da04a203a63242bc
 #endif

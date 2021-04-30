@@ -2,12 +2,10 @@
 #define LISTA_PUZZLES_H
 #include "Puzzle.h"
 
-
 /*
 Define una constante MAX_PUZZLES de valor 100, que representa el número máximo de 
 puzzles
 */
-
 
 const int MAX_PUZZLES = 100;
 const short int MODO_JUEGO = 2;
@@ -49,7 +47,9 @@ typedef struct{
 typedef tListaPuzzles tPuzzlesReunidos[MODO_JUEGO];
 
 
-
+/**
+ *  inicializa las dos listas de puzzles.
+ */
 void inicializar(tPuzzlesReunidos & jr);
 
 /**
