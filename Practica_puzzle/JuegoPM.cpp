@@ -36,16 +36,16 @@ void mainJuegoPM() {
 	//Estructura de nuestro juego
 	tJuegoPM juego;
 	bool finJuego = false;
-	short int opcion;
+	short int numOpc;
 
 	presentacionJuego();
 
 	while (!finJuego)
 	{
-		switch (opcion = menu()) {
+		switch (numOpc = menu()) {
 		case 1: {
 			string modoJ = "1D";
-			if (!iniciar(juego, modoJ, opcion)) {
+			if (!iniciar(juego, modoJ, numOpc)) {
 				cout << "Error al iniciar el juego en modo " << "1D" << endl;
 			}
 
@@ -54,7 +54,7 @@ void mainJuegoPM() {
 		} break;
 		case 2: {
 			string modoJ = "2D";
-			if (!iniciar(juego,modoJ, opcion)) {
+			if (!iniciar(juego,modoJ, numOpc)) {
 				cout << "Error al iniciar el juego en modo " << "2D" << endl;
 			}
 
@@ -85,44 +85,6 @@ void empezarJugar(tJuegoPM& juego) {
 
 }
 
-/*
- * /_//
- */
-int menu(){
-
-	int opcion;
-
-	mostrarMenu();
-	cin >> opcion;
-
-	while (opcion < 0 || opcion > 2) {
-		cout << "Error, opci�n no v�lida..." << endl << endl;
-		mostrarMenu();
-		cin >> opcion;
-	}
-
-	return opcion;
-}
-
-void presentacionJuego() {
-
-	cout << "-------------------" << endl;
-	cout << "Puzzle con matrices" << endl;
-	cout << "-------------------" << endl;
-}
-
-/*
- * /_//
- *  
- */
-void mostrarMenu() {
-
-	cout << "1. Resolver un puzzle 1D" << endl;
-	cout << "2. Resolver un puzzle 2D" << endl;
-	cout << "3. Añadir un puzzle al catálgo" << endl;
-	cout << "0. Salir" << endl;
-	cout << "Elige una opcion: ";
-}
 
 /*
  * typedef struct{
@@ -426,3 +388,67 @@ void infoAccion2D() {
 
 
 
+/*
+	MODIFICACIONES DE LA VERSION II
+*/
+
+/*
+En  este  módulo  dejamos  las  funciones  que  se  encargan  de  la  gestión  del  catálogo  
+de puzzles. 
+
+●Se mantiene la constante numOpc.
+
+●Se modifica la función menu para que muestre el nuevo menú.
+
+●Se  implementa  una  nueva  función mainPuzzlesReunidos()que  carga  los 
+datos de entrada, muestra el menú y gestiona las opciones seleccionadas por el usuario. 
+Cuando el usuario pide salir del programa guarda en el fichero el catálogo de puzzles y 
+libera la memoria dinámica que se haya utilizado.
+
+●El  resto  de  tipos  y  funciones  que  había  en  este  módulo  en  la  práctica  1  
+se eliminan de él.
+
+*/
+
+mainPuzzlesReunidos
+
+
+/*
+ * /_//
+ */
+int menu(){
+
+	int opcion;
+
+	presentacionJuego();
+	mostrarMenu();
+	cin >> opcion;
+
+	while (opcion < 0 || opcion > 2) {
+		cout << "Error, opci�n no v�lida..." << endl << endl;
+		mostrarMenu();
+		cin >> opcion;
+	}
+
+	return opcion;
+}
+
+void presentacionJuego() {
+
+	cout << "\n\n-----------------------" << endl;
+	cout << "PUZZLE CON MATRICES V.2" << endl;
+	cout << "-----------------------\n\n" << endl;
+}
+
+/*
+ * /_//
+ *  
+ */
+void mostrarMenu() {
+
+	cout << "1. Resolver un puzzle 1D" << endl;
+	cout << "2. Resolver un puzzle 2D" << endl;
+	cout << "3. Añadir un puzzle al catálgo" << endl;
+	cout << "0. Salir" << endl;
+	cout << "Elige una opcion: ";
+}

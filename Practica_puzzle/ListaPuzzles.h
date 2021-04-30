@@ -1,11 +1,16 @@
 #ifndef LISTA_PUZZLES_H
 #define LISTA_PUZZLES_H
+#include "Puzzle.h"
+
 
 /*
 Define una constante MAX_PUZZLES de valor 100, que representa el número máximo de 
 puzzles
 */
+
+
 const int MAX_PUZZLES = 100;
+const short int MODO_JUEGO = 2;
 
 /*
  * que contiene un array estático de punteros a 
@@ -25,11 +30,26 @@ const int MAX_PUZZLES = 100;
  * segunda lista el catálogo de puzzles de tipo 2D. 
 */
 
+typedef tPuzzle tArrayPuzzle[MAX_PUZZLES];
+
+typedef struct{
+
+   tArrayPuzzle listaPuzzle;
+   short int contador;
+
+}tListaPuzzles
 
 
-/**
- *  inicializa las dos listas de puzzles.
- */
+/*
+ * Declara  también  un  array, tPuzzlesReunidos,  de  2  posiciones,  cada  una  de  ellas  
+ * de tipo tListaPuzzles. La primera lista representa el catálogo de puzzles de tipo 1D y la 
+ * segunda lista el catálogo de puzzles de tipo 2D.
+*/
+
+typedef tListaPuzzles tPuzzlesReunidos[MODO_JUEGO];
+
+
+
 void inicializar(tPuzzlesReunidos & jr);
 
 /**

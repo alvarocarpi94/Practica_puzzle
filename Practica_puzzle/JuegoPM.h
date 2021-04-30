@@ -48,6 +48,12 @@ typedef struct{
 */
 
 
+
+/*
+    MODIFICACIONES DE LA VERSION II
+*/
+
+
 /**
  * que carga los 
  * datos de entrada, muestra el menú y gestiona las opciones seleccionadas por 
@@ -58,14 +64,19 @@ void mainPuzzlesReunidos();
 
 
 /**
- *  Menu 
+ *  Menu.
  */
 int menu();
 
 /**
  * 
- * Muestra las opciones del menú
+ * Muestra las opciones del menú.
  */
 void mostrarMenu();
+
+/**
+ * Muestra un rótulo del juego.
+ */
+void presentacionJuego();
 
 #endif
