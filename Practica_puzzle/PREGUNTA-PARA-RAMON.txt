@@ -1,0 +1,13 @@
+1) La funcion mainPuzzle, deberá tener un parametro de entrada para que pueda resolver el puzzle que quiero?
+
+2) El main debe responsabilizare de la apertura del fichero y luego mandar a llamar a jugar?
+
+3) Para la implementacion de operator que claves de ordenacion debemos tener en cuenta?
+
+- maximo de movimiento y las demás?
+
+4) cuando queremos añadir un fichero debemos buscar si existe en la lista o no es necesario?
+
+5) como eliminar la memoria resevada de un array?
+
+6) el modo en el cargar de puzzle.h para qeu sirve?

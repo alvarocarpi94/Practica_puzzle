@@ -7,33 +7,6 @@
 #ifndef JuegoPM_H
 #define JuegoPM_H
 
-#include "Matriz.h"
-#include <string>
-//#include <iostream>
-//#include <fstream> //Uso de ficheros
-
-
-using namespace std;
-/*
- * Estructura
- *
- * En el módulo JuegoPM se define el tipo tJuegoPM para 
- * estructurar los elementos del juego: las imágenes
- * (imagen del juegador y la que cargamos desde un fichero (como solucion)), 
- * el número máximo de acciones  y el modo.
- * 
- * OJO: tendríamos que tener un contador de los intentos actuales?
- */
-
-typedef struct{
-  tMatrizChar imagenInicial;
-  tMatrizChar imagenObjetivo;
-  int numMaxAcciones;
-  int numAccionActuales;
-  string modo;
-}tJuegoPM;
-
-
  //Cabeceras de las funciones
 
 /*
@@ -77,6 +50,4 @@ void mostrarMenu();
  */
 void presentacionJuego();
 
-=======
->>>>>>> 46f9e0bc91547a2ca44dfcd9da04a203a63242bc
 #endif

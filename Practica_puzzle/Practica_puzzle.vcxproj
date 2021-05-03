@@ -141,14 +141,21 @@
   <ItemGroup>
     <ClInclude Include="Coordenada.h" />
     <ClInclude Include="JuegoPM.h" />
+    <ClInclude Include="ListaPuzzles.h" />
     <ClInclude Include="Matriz.h" />
+    <ClInclude Include="Puzzle.h" />
     <ClInclude Include="UtilidadesSYS.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Coordenada.cpp" />
     <ClCompile Include="JuegoPM.cpp" />
+    <ClCompile Include="ListaPuzzles.cpp" />
     <ClCompile Include="Matriz.cpp" />
+    <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="UtilidadeSYS.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ficheros_retos\datosPuzzles.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -47,7 +47,6 @@ bool cargar(tMatrizChar& mat, istream& ent) {
     //variables locales
     bool cargarExitosa = true;
     short int filas, columnas;
-    char cargarCaracter;
     
     //Cargamos tamaño de la matriz
     //primero fila y luego columnas.

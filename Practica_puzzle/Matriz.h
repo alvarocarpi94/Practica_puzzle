@@ -33,13 +33,14 @@ const int DIM_MAX = 64;
  * para representar las imágenes.
  */
 
-typedef struct{
+struct tMatrizChar {
     //Tamaño máximo de nuestra matriz
-    unsigned char matriz[DIM_MAX][DIM_MAX];
+    //unsigned char matriz[DIM_MAX][DIM_MAX];
+    char matriz[DIM_MAX][DIM_MAX];
     //tamaño de nuestra matriz
     int filas;
     int columnas;
-}tMatrizChar;
+};
 
 /**
  * carga en la matriz los datos dados mediante el flujo de entrada.
