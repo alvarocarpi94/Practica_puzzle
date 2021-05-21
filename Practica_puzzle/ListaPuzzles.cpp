@@ -65,14 +65,27 @@ bool cargar(tPuzzlesReunidos& jr){
 
 			for(int j = 0; j < jr[i].contador; j++)
 			{
+				//Creamos un puntero tipo tPuzzle
 				jr[i].listaPuzzle[j] = new tPuzzle;
+
+				// cargamos el nombre de fichero el la estructura
 				getline(fichero, jr[i].listaPuzzle[j]->nombre_puzzle);
+
+				//Cargamos el nombre del fichero
 				fichero >> jr[i].listaPuzzle[j]->nombre_fichero;
+
+				//cargamos el tipo de juego
 				jr[i].listaPuzzle[j]->tipo = tModoJuego[i];
 
+
+				/*
+				 * Cargamos en el puzzle y el puzzle
+				 */
 				if(!cargar(*jr[i].listaPuzzle[j], jr[i].listaPuzzle[j]->tipo)){
 					exitoCargar = false;
 				}
+
+
 				fichero.ignore();
 			}
 		}

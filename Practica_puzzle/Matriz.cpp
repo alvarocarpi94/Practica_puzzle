@@ -237,11 +237,12 @@ bool swapC(tMatrizChar& mat, int c1, int c2) {
 
 /*
   Def: una matriz es cuadrada cuando tiene mismo numero de filas que de columnas
-
+  corregido se hace el valor absoluto de la diagonal.
  */
 bool swapD(tMatrizChar& mat, int d) {
     bool swapD = false;
-    int auxDiagonal = d;
+    d = abs(d);
+    int auxDiagonal = abs(d);
     int contador = 0;
 
     if((mat.filas == mat.columnas) && (d >= 0 && d < mat.columnas)){

@@ -32,27 +32,21 @@ void infoAccion2D();
  * 
  * 1)
  */
-void mainPuzzle(tPuzzle & jpm){
+void mainPuzzle(tPuzzle& jpm) {
 
 	chcp1252();
 	borrar(); //Borramos para que no nos salga el mensaje de chcp1252();
 	//Estructura de nuestro juego
 
-	if(cargar(jpm, jpm.tipo))
+	if (jugar(jpm))
 	{
-		if(jugar(jpm))
-		{
-			cout << "\n\nEXITO\n";
-		}
-		else
-		{
-			cout << "\n\nINTENTALO DE NUEVO\n";
-		}
+		cout << "\n\Reto solucionado\n";
 	}
 	else
 	{
-		cout << "\n\nError al cargar el fichero\n";
+		cout << "\n\nIntentalo de nuevo\n";
 	}
+
 }
 
 
@@ -101,7 +95,8 @@ bool cargar(tPuzzle & jpm, string modo){
 void mostrar(const tPuzzle& jpm) {
 
 
-	borrar();
+	//borrar();
+	// 
 	//Mostramos las imagenes jugador y Objetivo
 	mostrar(jpm.imagenInicial); //Mostrar del módulo Matriz.h
 	mostrar(jpm.imagenObjetivo);
@@ -287,7 +282,7 @@ void infoAccion1D() {
 	cout << "--------------------------------------------------" << endl;
 	cout << "Ayuda para elegir la acción 1D respecto al fichero" << endl;
 	cout << "--------------------------------------------------" << endl;
-	cout << "\nSF a b: intercambiar a y b de la matriz" << endl;
+	cout << "\nSF a b: intercambiar filas a y b de la matriz" << endl;
 	cout << "SC a b: intercambiar las columnas a y b de la matriz" << endl;
 	cout << "SD a: intercambiar las diagonales a y -a" << endl;
 	cout << "VF a: voltear a la fila a" << endl;

@@ -97,8 +97,12 @@ void mainPuzzlesReunidos() {
 				break;
 			case 3:
 
-				if (tryToAdd(puzzles)) cout << "\nSe ha añadido el nuevo puzzle\n";
-				else cout << "\nError al añadir el nuevo puzzle\n";
+				if (tryToAdd(puzzles)) {
+					cout << "\nSe ha añadido el nuevo puzzle\n";
+				}
+				else{
+					cout << "\nError al añadir el nuevo puzzle\n";
+				}
 
 				break;
 
@@ -140,7 +144,7 @@ int menu(){
 	mostrarMenu();
 	cin >> opcion;
 
-	while (opcion < 0 || opcion > 2) {
+	while (opcion < 0 || opcion > 3) {
 		cout << "Error, opcion no valida..." << endl << endl;
 		mostrarMenu();
 		cin >> opcion;
@@ -243,7 +247,7 @@ bool tryToAdd(tPuzzlesReunidos& puzzles){
 
 	for (int i = 0; i < MODO_JUEGO; i++) {
 		ordenarListaMenorAMayor(puzzles[i]);
-		mostrarListaInfo(puzzles[i]);
+		//mostrarListaInfo(puzzles[i]);
 	}
 
 	cout << "Nombre puzzle : ";
