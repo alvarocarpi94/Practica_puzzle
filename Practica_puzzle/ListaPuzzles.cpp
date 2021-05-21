@@ -183,6 +183,14 @@ void mostrarListaInfo(const tListaPuzzles& lp)
 	}
 }
 
+void mostrarListaNombre(const tListaPuzzles & lp){
+	for(int i = 0; i < lp.contador; i++){
+		cout << i + 1 << " ";
+		mostrarNombre(*lp.listaPuzzle[i]);
+
+	}
+}
+
 
 /*
  * Debemos tener el cuenta el algoritmo a utilizar en este caso

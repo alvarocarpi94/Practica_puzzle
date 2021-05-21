@@ -60,9 +60,23 @@ IMPORTANTE:
 
 
 int main(){
-	mainPuzzlesReunidos();
 
-	return EXIT_SUCCESS;
+	/*
+	 * string nuevo = "texto_lucas9D";
+
+	if((nuevo.find("1D")) < nuevo.size())
+	{
+		cout << nuevo.find("1D");
+	}else{
+		cout << "\n NO se ha encontrado valor incorrecto, tamaño del string : " << nuevo.size()
+			<< " valor del find(\"1D\") : " << nuevo.find("1D") << endl;
+	}
+	
+	*/
+
+	//mainPuzzlesReunidos();
+
+	return 0;
 }
 
 
@@ -236,7 +250,9 @@ puzzle. El puzzle que se ha añadido debe figurar en este listado.
 * 5) mostrar errores si no he podido cargar el fichero.
 */
 
-
+/*
+ * Funcion sin terminar 
+ */
 bool tryToAdd(tPuzzlesReunidos& puzzles){
 
 	tPunteroPuzzle nuevoPuzzle;
@@ -244,18 +260,28 @@ bool tryToAdd(tPuzzlesReunidos& puzzles){
 	bool addpuzzle = false;
 	int lista;
 
-
+	//organizamos y mostramos la lista
 	for (int i = 0; i < MODO_JUEGO; i++) {
 		ordenarListaMenorAMayor(puzzles[i]);
-		//mostrarListaInfo(puzzles[i]);
+		mostrarListaNombre(puzzles[i]);
+	//	mostrarListaInfo(puzzles[i]);
+		cout << endl;
 	}
 
+	//NOmbre del fichero
+	cout << "Nombre del fichero: ";
+	cin >> nombrePuzzle;
+
+	cin.sync();
+
+	//Como cargar el nombre del puzzle 
 	cout << "Nombre puzzle : ";
 	getline(cin, nombreFichero);
-	cout << "Nombre del fichero: ";
-	getline(cin, nombreFichero);
+	
+	cin.sync();
 
-	if(nombreFichero.find(tModoJuego[0]) || nombreFichero.find(tModoJuego[1]) )
+
+	if( (nombreFichero.find(tModoJuego[0])) < nombreFichero.size() || (nombreFichero.find(tModoJuego[1])) < nombreFichero.size())
 	{
 		nuevoPuzzle = new tPuzzle;
 
@@ -272,39 +298,13 @@ bool tryToAdd(tPuzzlesReunidos& puzzles){
 		
 		lista = (nuevoPuzzle->tipo == tModoJuego[0]) ? 0 : 1;
 
-		if(cargar(*nuevoPuzzle, nuevoPuzzle->tipo)){
-			if(insertarOrdenado(puzzles[lista], nuevoPuzzle)){
+		if (cargar(*nuevoPuzzle, nuevoPuzzle->tipo)) 
+		{
+			if (insertarOrdenado(puzzles[lista], nuevoPuzzle)) 
+			{
 				addpuzzle = true;
 			}
 		}
-	
-
-		/*
-		tPuzzle nuevoPuzzle;
-
-		nuevoPuzzle.nombre_puzzle = nombrePuzzle;
-		nuevoPuzzle.nombre_fichero = nombreFichero;
-
-		if (nombreFichero.find(tModoJuego[0]))
-		{
-			nuevoPuzzle.tipo = tModoJuego[0];
-		}
-		else
-		{
-			nuevoPuzzle.tipo = tModoJuego[1];
-		}
-
-		lista = (nuevoPuzzle.tipo == tModoJuego[0]) ? 0 : 1;
-
-		if (cargar(nuevoPuzzle, nuevoPuzzle.tipo)) {
-			
-			if (insertarOrdenado(puzzles[lista], &nuevoPuzzle)) {
-				addpuzzle = true;
-			}
-			
-		}
-
-		*/
 	}
 
 	return addpuzzle;

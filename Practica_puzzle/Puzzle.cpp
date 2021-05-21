@@ -312,6 +312,12 @@ void mostrarInfo(const tPuzzle& jpm){
 	cout << " movimientos\n";
 }
 
+
+void mostrarNombre(const tPuzzle& jpm){
+
+	cout << jpm.nombre_puzzle << " Fichero: " << jpm.nombre_fichero << endl;
+}
+
 //IMPLEMENTACION DE LAS FUNCIONES DE OPERATOR
 /*
  * Para la claves de ordenacion tenemos en cuenta:

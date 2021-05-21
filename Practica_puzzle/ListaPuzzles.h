@@ -135,4 +135,6 @@ void ordenarListaMenorAMayor(tListaPuzzles& lista);
 
 void mostrarListaInfo(const tListaPuzzles& lp);
 
+void mostrarListaNombre(const tListaPuzzles& lp);
+
 #endif

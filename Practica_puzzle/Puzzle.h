@@ -104,6 +104,12 @@ void mostrar(const tPuzzle & jpm);
  */
 void mostrarInfo(const tPuzzle & jpm);
 
+
+/**
+ * Muestra la lista de puzzle que existe.
+ */
+void mostrarNombre(const tPuzzle& jpm);
+
 /**
  *  permite realizar las acciones necesarias para jugar y controla si se ha llegado al l�mite 
  * de acciones permitidas;

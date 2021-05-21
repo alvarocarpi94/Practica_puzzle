@@ -1,3 +1,5 @@
+//preguntadas
+
 1) La funcion mainPuzzle, deberá tener un parametro de entrada para que pueda resolver el puzzle que quiero?
 
 2) El main debe responsabilizare de la apertura del fichero y luego mandar a llamar a jugar?
@@ -11,3 +13,19 @@
 5) como eliminar la memoria resevada de un array?
 
 6) el modo en el cargar de puzzle.h para qeu sirve?
+
+
+//sin preguntar
+
+
+
+//Cosas por hacer
+
+
+1) implementar buscar para un fichero dado
+2) depurar bool tryToAdd(tPuzzlesReunidos& puzzles)	  -> fichero juegoPM.cpp
+	-ejecutar la práctica y darle a la opción 3.
+	-depurar  apartir de la linea 272
+	-ver por qué no se carga bien las variables nombrePuzzle y nombreFichero
+
+
