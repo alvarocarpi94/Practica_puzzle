@@ -50,7 +50,7 @@ void mainPuzzle(tPuzzle& jpm) {
 }
 
 
-bool cargar(tPuzzle & jpm, string modo){
+bool cargar(tPuzzle * jpm, string modo){
 
 	//variables
 	bool aperturaFichero = true;
@@ -58,7 +58,7 @@ bool cargar(tPuzzle & jpm, string modo){
 	string nombreFichero;
 
 	nombreFichero += RUTA_DIR.c_str();
-	nombreFichero += jpm.nombre_fichero;
+	nombreFichero += jpm->nombre_fichero;
 
 	ficheroDeEntrada.open(nombreFichero);
 
@@ -73,12 +73,12 @@ bool cargar(tPuzzle & jpm, string modo){
 		Cambiamos código para optimizar los return y ver si se carga o no el fichero.
 		 */
 
-		if (!cargar(jpm.imagenInicial, ficheroDeEntrada) || !cargar(jpm.imagenObjetivo, ficheroDeEntrada)) {
+		if (!cargar(jpm->imagenInicial, ficheroDeEntrada) || !cargar(jpm->imagenObjetivo, ficheroDeEntrada)) {
 			aperturaFichero = false;
 		}
 		else {
-			ficheroDeEntrada >> jpm.numMaxAcciones;
-			jpm.numAccionActuales = 0;
+			ficheroDeEntrada >> jpm->numMaxAcciones;
+			jpm->numAccionActuales = 0;
 		}
 
 		ficheroDeEntrada.close();

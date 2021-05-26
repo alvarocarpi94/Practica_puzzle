@@ -29,3 +29,4 @@
 	-ver por qué no se carga bien las variables nombrePuzzle y nombreFichero
 
 
+//preguntar a ramon si se puede implementar varios buscar sobre cargando parametros.

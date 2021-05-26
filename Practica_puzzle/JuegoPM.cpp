@@ -64,6 +64,9 @@ int main(){
 	/*
 	 * string nuevo = "texto_lucas9D";
 
+	//01245678910,11,12,13 
+	//nuevopuzzle_1D.txt -> 13 -> if(13), if(0) while(1) 
+	//9147912374981237498172349817
 	if((nuevo.find("1D")) < nuevo.size())
 	{
 		cout << nuevo.find("1D");
@@ -74,7 +77,7 @@ int main(){
 	
 	*/
 
-	//mainPuzzlesReunidos();
+	mainPuzzlesReunidos();
 
 	return 0;
 }
@@ -130,11 +133,8 @@ void mainPuzzlesReunidos() {
 					toda la memoria dinámica que se haya reservado.
 				 */
 				guardar(puzzles);
+				eliminarMemoriaDinamica(puzzles);
 				finJuego = true;
-
-				//MIRAR NO ESTA BIEN
-				//delete puzzles;
-
 				break;
 			}
 		}
@@ -255,10 +255,10 @@ puzzle. El puzzle que se ha añadido debe figurar en este listado.
  */
 bool tryToAdd(tPuzzlesReunidos& puzzles){
 
-	tPunteroPuzzle nuevoPuzzle;
-	string nombrePuzzle, nombreFichero;
+	tPuzzle nuevoPuzzle;
+	string nombrePuzzle, nombreFichero, aux;
 	bool addpuzzle = false;
-	int lista;
+	int idLista, auxPos;
 
 	//organizamos y mostramos la lista
 	for (int i = 0; i < MODO_JUEGO; i++) {
@@ -270,42 +270,71 @@ bool tryToAdd(tPuzzlesReunidos& puzzles){
 
 	//NOmbre del fichero
 	cout << "Nombre del fichero: ";
-	cin >> nombrePuzzle;
+	cin >> nombreFichero;
 
 	cin.sync();
 
 	//Como cargar el nombre del puzzle 
 	cout << "Nombre puzzle : ";
-	getline(cin, nombreFichero);
+	cin >> aux;
+	getline(cin, nombrePuzzle);
 	
-	cin.sync();
-
+	nombrePuzzle = aux + nombrePuzzle; //lucas/n
+	//punto de depuracion
+	cout << nombrePuzzle;
 
 	if( (nombreFichero.find(tModoJuego[0])) < nombreFichero.size() || (nombreFichero.find(tModoJuego[1])) < nombreFichero.size())
 	{
-		nuevoPuzzle = new tPuzzle;
+		
+		//Cargamos en la estrucutra los campos nombre y fichero
+		nuevoPuzzle.nombre_puzzle = nombrePuzzle;
+		nuevoPuzzle.nombre_fichero = nombreFichero;
 
-		nuevoPuzzle->nombre_puzzle = nombrePuzzle;
-		nuevoPuzzle->nombre_fichero = nombreFichero;
-
+		//cargar el modo al puzzle
 		if(nombreFichero.find(tModoJuego[0]))
 		{
-			nuevoPuzzle->tipo = tModoJuego[0];
+			nuevoPuzzle.tipo = tModoJuego[0];
 		}else
 		{
-			nuevoPuzzle->tipo = tModoJuego[1];
+			nuevoPuzzle.tipo = tModoJuego[1];
 		}
-		
-		lista = (nuevoPuzzle->tipo == tModoJuego[0]) ? 0 : 1;
 
-		if (cargar(*nuevoPuzzle, nuevoPuzzle->tipo)) 
+		//Identificamos a que lista vamos a cargar el puzzle
+		// lista[0] -> lista de 1D, lista[1] -> lista de 2D
+		idLista = (nuevoPuzzle.tipo == tModoJuego[0]) ? 0 : 1;
+
+
+		//Antes de cargar debería comprobar si el fichero ya existe en nuestra lista.
+		//si existe nos salimos de la ejecución y sino pues seguimos con el procedimiento 
+		//que llevamos
+		//creamos un reserva de memoria dinamica.
+
+		if(!buscar(puzzles[idLista], &nuevoPuzzle, auxPos))
 		{
-			if (insertarOrdenado(puzzles[lista], nuevoPuzzle)) 
+		
+			//Intentamos cargar el fichero con la informacion correspondiente
+			//¿que tiene? -> puzzle inicio y puzzle objetivo -> Mn*n y los intentos maximos.
+			if (cargar(&nuevoPuzzle, nuevoPuzzle.tipo)) 
 			{
-				addpuzzle = true;
+				if (insertarOrdenado(puzzles[idLista], nuevoPuzzle)) 
+				{
+					addpuzzle = true;
+				}
 			}
+		}else{
+			addpuzzle = false;
 		}
+
 	}
 
 	return addpuzzle;
+}
+
+
+
+void eliminarMemoriaDinamica(tPuzzlesReunidos & puzzles){
+
+	for (int i = 0; i < MODO_JUEGO; i++) {
+		eliminarMemoriaLista(puzzles[i]);
+	}
 }

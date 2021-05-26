@@ -81,7 +81,7 @@ bool cargar(tPuzzlesReunidos& jr){
 				/*
 				 * Cargamos en el puzzle y el puzzle
 				 */
-				if(!cargar(*jr[i].listaPuzzle[j], jr[i].listaPuzzle[j]->tipo)){
+				if(!cargar(jr[i].listaPuzzle[j], jr[i].listaPuzzle[j]->tipo)){
 					exitoCargar = false;
 				}
 
@@ -162,7 +162,7 @@ int elegirPuzzle(tListaPuzzles& lp){
 	cout << "Elige un reto:";
 	cin >> opcion;
 
-	while(opcion < -2 || opcion > lp.contador -1){
+	while(opcion < -2 || opcion - 1 > lp.contador -1){
 		cout << "\n\nERROR al eligir un reto\n";
 		cout << "Elige un reto\n";
 		cin >> opcion;
@@ -204,7 +204,7 @@ void mostrarListaNombre(const tListaPuzzles & lp){
  * 
  * Es decir no sé si debemos hacer operaciones operator == y < en Puzzle.h
  */
-bool insertarOrdenado(tListaPuzzles& lp, tPuzzle* p){
+bool insertarOrdenado(tListaPuzzles& lp, const tPuzzle & p){
 
 	//Varibles
 	bool insertado = true;
@@ -215,7 +215,7 @@ bool insertarOrdenado(tListaPuzzles& lp, tPuzzle* p){
 	}else
 	{
 		int pos = 0;
-		while((pos < lp.contador) && (*lp.listaPuzzle[pos] < *p)){
+		while((pos < lp.contador) && (*lp.listaPuzzle[pos] < p)){
 			pos++;
 		}
 		//Insetamos en la posicion pos (primer mayor o igual)
@@ -223,8 +223,8 @@ bool insertarOrdenado(tListaPuzzles& lp, tPuzzle* p){
 			//Desplazamos una posicion a la derecha
 			lp.listaPuzzle[j] = lp.listaPuzzle[j - 1];
 		}
-		//añadimos el nuevo puzzle a la lista.
-		lp.listaPuzzle[pos] = p;
+		//añadimos el nuevo puzzle a la lista		
+		lp.listaPuzzle[pos] = new tPuzzle(p);
 		lp.contador++;
 	}
 
@@ -360,3 +360,14 @@ void ordenarListaMenorAMayor(tListaPuzzles& lista) {
 
 }
 
+void eliminarMemoriaLista(tListaPuzzles & lp){
+	
+	for(int i = 0; i < lp.contador; i++){
+		delete lp.listaPuzzle[i];
+	}
+
+	// lp.listaX = new Tpuzzle[100];
+	// delete lp.listaX;
+
+	//delete lp.listaPuzzle;
+}

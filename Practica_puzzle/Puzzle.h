@@ -86,7 +86,7 @@ void mainPuzzle(tPuzzle & p);
 /**
  * abre el fichero que corresponda y llama a la funci�n cargar del m�dulo Matriz.
  */
-bool cargar(tPuzzle & jpm, string tipo); 
+bool cargar(tPuzzle * jpm, string tipo); 
 
 
 /**

@@ -109,7 +109,7 @@ int elegirPuzzle(tListaPuzzles & lp);
  * Inserta ordenado en la 
  * lista de puzzles un nuevo puzzle.
  */
-bool insertarOrdenado(tListaPuzzles & lp, tPuzzle * p);
+bool insertarOrdenado(tListaPuzzles & lp, const tPuzzle & p);
 
 //Se implementarán al menos las siguientes funciones no pertenecientes a la interfaz: 
 
@@ -136,5 +136,7 @@ void ordenarListaMenorAMayor(tListaPuzzles& lista);
 void mostrarListaInfo(const tListaPuzzles& lp);
 
 void mostrarListaNombre(const tListaPuzzles& lp);
+
+void eliminarMemoriaLista(tListaPuzzles & lp);
 
 #endif

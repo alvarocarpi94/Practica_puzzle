@@ -7,6 +7,9 @@
 #ifndef JuegoPM_H
 #define JuegoPM_H
 
+
+#include "ListaPuzzles.h"
+
  //Cabeceras de las funciones
 
 /*
@@ -49,5 +52,7 @@ void mostrarMenu();
  * Muestra un rótulo del juego.
  */
 void presentacionJuego();
+
+void eliminarMemoriaDinamica(tPuzzlesReunidos & puzzles);
 
 #endif

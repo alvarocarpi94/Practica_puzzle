@@ -1,8 +1,6 @@
-8
-
-ruebas
-Intercambiar columnas
-fichSC_1D.txt
+7
+Torre
+torre1_1D.txt
 Intercambiar columnas
 fichSC_1D.txt
 Intercambiar diagonales
