@@ -12,7 +12,6 @@
 #include "UtilidadesSYS.h"
 #include "ListaPuzzles.h"
 using namespace std;
-#include <locale.h>
 
 
 void intentarJugar(tListaPuzzles& lp);
@@ -61,22 +60,6 @@ IMPORTANTE:
 
 int main(){
 
-	/*
-	 * string nuevo = "texto_lucas9D";
-
-	//01245678910,11,12,13 
-	//nuevopuzzle_1D.txt -> 13 -> if(13), if(0) while(1) 
-	//9147912374981237498172349817
-	if((nuevo.find("1D")) < nuevo.size())
-	{
-		cout << nuevo.find("1D");
-	}else{
-		cout << "\n NO se ha encontrado valor incorrecto, tamaño del string : " << nuevo.size()
-			<< " valor del find(\"1D\") : " << nuevo.find("1D") << endl;
-	}
-	
-	*/
-
 	mainPuzzlesReunidos();
 
 	return 0;
@@ -86,8 +69,8 @@ int main(){
 
 void mainPuzzlesReunidos() {
 
-	chcp1252();
-	borrar(); //Borramos para que no nos salga el mensaje de chcp1252();
+	//chcp1252();
+	//borrar(); //Borramos para que no nos salga el mensaje de chcp1252();
 	//Estructura de nuestro juego
 	// Establecer el idioma a español
 	
@@ -115,10 +98,10 @@ void mainPuzzlesReunidos() {
 			case 3:
 
 				if (tryToAdd(puzzles)) {
-					cout << "\nSe ha añadido el nuevo puzzle\n";
+					cout << "\nSe ha anadido el nuevo puzzle\n";
 				}
 				else{
-					cout << "\nError al añadir el nuevo puzzle\n";
+					cout << "\nError al anadir el nuevo puzzle\n";
 				}
 
 				break;
@@ -182,7 +165,7 @@ void mostrarMenu() {
 
 	cout << "1. Resolver un puzzle 1D" << endl;
 	cout << "2. Resolver un puzzle 2D" << endl;
-	cout << "3. Añadir un puzzle al catálogo" << endl;
+	cout << "3. Anadir un puzzle al catalogo" << endl;
 	cout << "0. Salir" << endl;
 	cout << "Elige una opcion: ";
 }
@@ -331,7 +314,13 @@ bool tryToAdd(tPuzzlesReunidos& puzzles){
 }
 
 
+/*
+	Eliminamos la memoria dinámica seleccionando
+	cada array de puzzle y eliminando cada puzzle
 
+	Además se pone la variable puntero a nullptr 
+	y luego nuestro lp.contador = 0;
+*/
 void eliminarMemoriaDinamica(tPuzzlesReunidos & puzzles){
 
 	for (int i = 0; i < MODO_JUEGO; i++) {

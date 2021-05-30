@@ -1,4 +1,4 @@
-7
+8
 Torre
 torre1_1D.txt
 Intercambiar columnas
@@ -13,9 +13,11 @@ Voltear diagonal
 fichVD_1D.txt
 Voltear fila
 fichVF_1D.txt
+prueba 1D
+prueba_1D.txt
 5
 Rotar a la derecha
-patitoRD_2D.txt
+patitaRD_2D.txt
 Voltear respecto a la horizontal
 patitaVH_2D.txt
 Voltear respecto a la vertical

@@ -15,7 +15,7 @@ Voltear fila
 fichVF_1D.txt
 5
 Rotar a la derecha
-patitoRD_2D.txt
+patitaRD_2D.txt
 Voltear respecto a la horizontal
 patitaVH_2D.txt
 Voltear respecto a la vertical

@@ -308,7 +308,7 @@ void infoAccion2D() {
 void mostrarInfo(const tPuzzle& jpm){
 
 	cout << jpm.nombre_puzzle;
-	cout << " con un máximo de " << jpm.numMaxAcciones;
+	cout << " con un maximo de " << jpm.numMaxAcciones;
 	cout << " movimientos\n";
 }
 

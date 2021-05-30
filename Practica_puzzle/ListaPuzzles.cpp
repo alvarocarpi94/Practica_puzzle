@@ -150,7 +150,7 @@ int elegirPuzzle(tListaPuzzles& lp){
 
 	int opcion;
 
-	cout << "\nEn esta versión están disponibles los siguientes retos\n";
+	cout << "\nEn esta version estan disponibles los siguientes retos:\n\n";
 	
 	//mostramos la lista 
 	mostrarListaInfo(lp);
@@ -172,7 +172,10 @@ int elegirPuzzle(tListaPuzzles& lp){
 }
 
 
+/*
+	Muestra la informacion de la lista
 
+*/
 void mostrarListaInfo(const tListaPuzzles& lp)
 {
 	for (int i = 0; i < lp.contador; i++)
@@ -183,6 +186,10 @@ void mostrarListaInfo(const tListaPuzzles& lp)
 	}
 }
 
+
+/*
+	Muestra la lista con los nombre de ficheros
+*/
 void mostrarListaNombre(const tListaPuzzles & lp){
 	for(int i = 0; i < lp.contador; i++){
 		cout << i + 1 << " ";
@@ -309,14 +316,42 @@ void ordenarListaMayorAMenor(tListaPuzzles & lista){
 	//Desde el 1º hasta el penúltimo si hay intercambios...
 	while((i < lista.contador - 1) && inter)
 	{
+
+		cout << "paso del while : " << i << endl;
+
 		inter = false;
 		for(int j = lista.contador - 1; j > i; j--)
 		{
+
 			if(*lista.listaPuzzle[j] > *lista.listaPuzzle[j -1])
 			{
-				tPuzzle * tmp;
+
+				//cout << lista.listaPuzzle[j]->nombre_puzzle << " > " << lista.listaPuzzle[j -1]->nombre_puzzle << endl;
+				//direccion de memoria que contiene el puntero
+				//cout << lista.listaPuzzle[j] << " > " << lista.listaPuzzle[j -1] << endl;
+				//direccion de memoria del puntero
+				//cout << &lista.listaPuzzle[j] << " > " << &lista.listaPuzzle[j -1] << endl;
+				/*
+					Un puntero es un variable que guarda un dir M
+					-> cout << *p dir.M que guarda
+					-> cout << &p dir.M del puntero
+
+					quiero guardar en tmp la dir.M de otro puntero.
+
+					L={t,ic,id,if,vc,vd,vf}
+					0 -> if(vf > vd) 
+				*/
+				tPunteroPuzzle  tmp;
+				tPunteroPuzzle  tmp1;
 				tmp = lista.listaPuzzle[j];
+				tmp1 = lista.listaPuzzle[j -1];
+
+				//cout << tmp << " > " << tmp1 << endl;
+
+				//lista.listaPuzzle[j] = lista.listaPuzzle[j - 1];
 				lista.listaPuzzle[j - 1] = tmp;
+				lista.listaPuzzle[j] = tmp1;
+				
 				inter = true;
 			}
 		}
@@ -346,9 +381,21 @@ void ordenarListaMenorAMayor(tListaPuzzles& lista) {
 		{
 			if (*lista.listaPuzzle[j] < *lista.listaPuzzle[j - 1])
 			{
-				tPuzzle* tmp;
+
+				/*
+					L= {vf,vd,vc,if,id,ic,t}
+
+				*/
+
+				cout << lista.listaPuzzle[j]->nombre_puzzle << " < " << lista.listaPuzzle[j -1]->nombre_puzzle << endl;
+
+				tPunteroPuzzle  tmp;
+				tPunteroPuzzle  tmp1;
 				tmp = lista.listaPuzzle[j];
+				tmp1 = lista.listaPuzzle[j -1];
+
 				lista.listaPuzzle[j - 1] = tmp;
+				lista.listaPuzzle[j] = tmp1;
 				inter = true;
 			}
 		}
@@ -360,14 +407,17 @@ void ordenarListaMenorAMayor(tListaPuzzles& lista) {
 
 }
 
+
+/*
+	eliminamos de los punteros la memoria dinámica a la 
+	que apuntaban.
+*/
 void eliminarMemoriaLista(tListaPuzzles & lp){
 	
 	for(int i = 0; i < lp.contador; i++){
 		delete lp.listaPuzzle[i];
+		lp.listaPuzzle[i] = nullptr;
 	}
 
-	// lp.listaX = new Tpuzzle[100];
-	// delete lp.listaX;
-
-	//delete lp.listaPuzzle;
+	lp.contador = 0;
 }
